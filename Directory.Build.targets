@@ -18,7 +18,8 @@
   </Target>
 
   <PropertyGroup Condition="$(IsWebHost) == 'true'">
-    <ApplicationInsightsResourceId>/subscriptions/7b4764ae-7035-478a-85bc-bc122005cb13/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/EsportAsia.MainSite</ApplicationInsightsResourceId>
+    <OutputType>Exe</OutputType>
+    <ApplicationInsightsResourceId>/subscriptions/39b32a2e-1324-439a-94b1-055278e9bfed/resourcegroups/cowker/providers/microsoft.insights/components/cowker</ApplicationInsightsResourceId>
   </PropertyGroup>
   <ItemGroup Condition="$(IsWebHost) == 'true'">
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.0" />
