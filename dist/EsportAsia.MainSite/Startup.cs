@@ -40,8 +40,9 @@ namespace EsportAsia.MainSite
                 .AddAzureWebAppDiagnostics();
 
         public void ConfigureService(WebHostBuilderContext context, IServiceCollection services)
-            => services
-                .AddSingleton<IHostingStartup,HostStartup>()
+        {
+            services
+                .AddSingleton<IHostingStartup, HostStartup>()
                 .AddDefaultService()
                 .AddElm()
                 .AddSecurityService()
@@ -55,11 +56,15 @@ namespace EsportAsia.MainSite
                 .AddNetTools()
                 .AddMvcLight()
                 .AddSwaggerGen(o => o.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" }))
-                .Configure<RewriteOptions>(o => o.AddRedirectToHttpsPermanent())
-                .Configure<KestrelServerOptions>(o => o.Listen(new IPEndPoint(
-                    IPAddress.Loopback, 443),
-                    l => l.UseHttps(Path.Combine(@"E:\\Workspace\\CoWorker\", "esportasia.pfx"), "1")));
+                .Configure<RewriteOptions>(o => o.AddRedirectToHttpsPermanent());
+            if(context.HostingEnvironment.IsDevelopment())
+            {
+                services.Configure<KestrelServerOptions>(o => o.Listen(new IPEndPoint(
+                IPAddress.Loopback, 443),
+                l => l.UseHttps(Path.Combine(@"E:\\Workspace\\CoWorker\", "esportasia.pfx"), "1")));
+            }
 
+        }
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
             app.UseSwagger();
