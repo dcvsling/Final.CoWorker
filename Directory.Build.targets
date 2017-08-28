@@ -1,0 +1,30 @@
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+  <PropertyGroup Condition="$(IsTest) == 'true'">
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup Condition="$(IsTest) == 'true'">
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="15.5.0-preview-20170810-02" />
+    <PackageReference Include="Moq" Version="4.7.99" />
+    <PackageReference Include="xunit" Version="2.3.0-beta4-build3742" />
+    <PackageReference Include="xunit.runner.visualstudio" Version="2.3.0-beta4-build3742" />
+  </ItemGroup>
+
+  <Target Name="TestFileCopy" AfterTargets="AfterBuild" Condition="$(IsTest) == 'true'">
+    <Copy SourceFiles="$(SolutionDir)xunit.runner.json" DestinationFolder="$(OutDir)" />
+    <Copy SourceFiles="$(SolutionDir)appsettings.json" DestinationFolder="$(OutDir)" />
+    <Copy SourceFiles="$(SolutionDir)appsettings.Development.json" DestinationFolder="$(OutDir)" />
+  </Target>
+
+  <PropertyGroup Condition="$(IsWebHost) == 'true'">
+    <ApplicationInsightsResourceId>/subscriptions/7b4764ae-7035-478a-85bc-bc122005cb13/resourcegroups/Default-ApplicationInsights-EastUS/providers/microsoft.insights/components/EsportAsia.MainSite</ApplicationInsightsResourceId>
+  </PropertyGroup>
+  <ItemGroup Condition="$(IsWebHost) == 'true'">
+    <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.0" />
+    <WCFMetadata Include="Connected Services" />
+  </ItemGroup>
+  <Target Name="CredentialFileCopy" AfterTargets="AfterBuild" Condition="$(IsWebHost) == 'true'">
+      <Copy SourceFiles="$(SolutionDir)esportasia.pfx" DestinationFolder="$(OutDir)" />
+    </Target>
+</Project>

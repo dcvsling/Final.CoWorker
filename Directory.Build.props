@@ -1,4 +1,6 @@
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project=".\targets\Common.NetCore.targets" />
-  <Import Project=".\targets\Pack.NetCore.targets" Condition="$(IsPackable) != 'false'" />
+  <PropertyGroup>
+    <LangVersion>latest</LangVersion>
+    <RestoreProjectStyle>PackageReference</RestoreProjectStyle>
+  </PropertyGroup>
 </Project>

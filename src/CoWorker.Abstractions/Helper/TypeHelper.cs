@@ -23,7 +23,10 @@ namespace System.Reflection
             => type.Name.RemoveFirstPart(x => Char.IsUpper(x));
         public static string RemovePostfixName(this Type type)
             => type.Name.RemoveLastPart(x => Char.IsUpper(x));
-        public static bool IsAssignableFromButNotEqual<TType>(this Type type)
-            => typeof(TType).IsAssignableFrom(type) && type != typeof(TType);
+        public static bool IsAssignablePOCOFrom<TType>(this Type type)
+            => typeof(TType).IsAssignableFrom(type)
+                && type != typeof(TType)
+                && !type.IsAbstract
+                && !type.IsInterface;
     }
 }

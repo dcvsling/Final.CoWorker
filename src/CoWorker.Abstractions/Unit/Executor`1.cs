@@ -1,18 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
-
+﻿
 namespace CoWorker.Abstractions.Values
 {
+    using System;
+    using System.Linq.Expressions;
 
     public struct Executor<T>
     {
         private Action<T> _executor;
         public Executor(Action<T> executor)
         {
-            _executor = executor ?? ActionHelper.Empty<T>();
+            _executor = executor ?? Helper.Empty<T>();
         }
 
         public Action<T> Invoke => _executor;

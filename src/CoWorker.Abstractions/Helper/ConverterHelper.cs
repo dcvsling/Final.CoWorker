@@ -16,7 +16,7 @@ namespace System
                 argsGetter.Select(x => x()).ToArray()).As<T>());
         
         public static void IsType<TBase, TType>(
-            this IObject<TBase> obj, 
+            this IOptional<TBase> obj, 
             Action<TType> truecase, 
             Action<TBase> falsecase)
             => (obj.Value is TType t 

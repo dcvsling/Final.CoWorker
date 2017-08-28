@@ -17,7 +17,7 @@
             => seq.Join(jseq, selector, jselector, (x, y) => (x, y))
                 .Each(x => each(x.Item1, x.Item2));
 
-        public static IEnumerable<T> Append<T>(this IObject<T> left, T right)
+        public static IEnumerable<T> Append<T>(this IOptional<T> left, T right)
             => Enumerable.Empty<T>().Append(left.Value).Append(right);
 
         public static IEnumerable<T> Do<T>(this IEnumerable<T> seq, Action<T> action)

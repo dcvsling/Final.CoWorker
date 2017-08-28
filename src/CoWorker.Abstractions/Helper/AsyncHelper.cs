@@ -37,7 +37,7 @@ namespace System.Threading.Tasks
             where TDisposable : IDisposable
                 => Task.Run(() => disposer.Using(action,error,final));
 
-        async public static Task<T> DoAsync<T>(this IObject<T> t, Action<T> action)
+        async public static Task<T> DoAsync<T>(this IOptional<T> t, Action<T> action)
         {
             await Task.Run(() => action(t.Value));
             return t.Value;

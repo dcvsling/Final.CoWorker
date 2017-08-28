@@ -30,19 +30,11 @@ namespace System.Linq
             Func<Func<T, Task>, Func<T, Task>> other
         )
             => Merge<Func<T,Task>>(basemiddleware,other);
-		private readonly static Action EmptyAction = () => { };
-        public static Action Empty() => EmptyAction;
-        public static Action<T> Empty<T>() => x => EmptyAction();
-        public static Action<T,T2> Empty<T,T2>() => (x,y) => EmptyAction();
-        private readonly static Func<object> DefaultMethod = () => default;
-        public static Func<object> Default() => DefaultMethod;
-        public static Func<TResult> Default<TResult>() => () => default;
-        public static Func<T,TResult> Default<T,TResult>() => x => Default<TResult>()();
-        public static Func<T, T2,TResult> Default<T, T2,TResult>() => (x, y) => Default<TResult>()();
+		
         public static Action<T> EmptyWithException<T>(Func<Exception> exgetter) =>
             x => { throw exgetter(); };
 
-        public static Func<T> ToFunc<T>(this IObject<T> t) => () => t.Value;
+        public static Func<T> ToFunc<T>(this IOptional<T> t) => () => t.Value;
 
         public static T GetValue<T>(this Action<Action<T>> action)
         {
