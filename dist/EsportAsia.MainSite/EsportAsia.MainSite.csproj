@@ -3,6 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <IsWebHost>true</IsWebHost>
+    <ApplicationInsightsResourceId>/subscriptions/39b32a2e-1324-439a-94b1-055278e9bfed/resourcegroups/cowker/providers/microsoft.insights/components/cowker</ApplicationInsightsResourceId>
   </PropertyGroup>
 
   <ItemGroup>

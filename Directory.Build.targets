@@ -25,6 +25,6 @@
     <WCFMetadata Include="Connected Services" />
   </ItemGroup>
   <Target Name="CredentialFileCopy" AfterTargets="AfterBuild" Condition="$(IsWebHost) == 'true'">
-      <Copy SourceFiles="$(SolutionDir)esportasia.pfx" DestinationFolder="$(OutDir)" />
+      <Copy SourceFiles="$(SolutionDir)esportasia.pfx" DestinationFolder="$(OutDir)"  ContinueOnError="true" />
     </Target>
 </Project>

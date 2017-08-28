@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Options;
+﻿using System.Diagnostics;
+using Microsoft.Extensions.Options;
 using Microsoft.Extensions.DependencyModel;
 using System;
 using System.Collections.Generic;
@@ -17,9 +18,9 @@ namespace CoWorker.Infrastructure.TypeStore
 
         public TypeStoreManager(ICache<Assembly> cache)
         {
-           
             _names = DependencyContext.Default.GetDefaultAssemblyNames();
             _cache = cache;
+            _typeCache = new Dictionary<Func<Type, bool>, Type>();
         }
 
         public IEnumerable<Type> List
