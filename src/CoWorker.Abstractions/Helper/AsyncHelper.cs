@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace System.Threading.Tasks
 {
@@ -20,9 +21,9 @@ namespace System.Threading.Tasks
             => x => action.RunAsync(() => x);
 
         public static Func<T, Task> Empty<T>() => x => Task.CompletedTask;
-        
+
         public static Task<TResult> UsingAsync<TDisposable, TResult>(
-            this TDisposable disposer, 
+            this TDisposable disposer,
             Func<TDisposable, TResult> func,
             Action<Exception> error = null,
             Action final = null)
@@ -30,7 +31,7 @@ namespace System.Threading.Tasks
             => Task.Run(() => disposer.Using(func,error,final));
 
         public static Task UsingAsync<TDisposable>(
-            this TDisposable disposer, 
+            this TDisposable disposer,
             Action<TDisposable> action,
             Action<Exception> error = null,
             Action final = null)
@@ -42,11 +43,20 @@ namespace System.Threading.Tasks
             await Task.Run(() => action(t.Value));
             return t.Value;
         }
-        
+
         public static Task CallbackAsync(this Action callback, Action action)
             => Task.Run(() => {
                 action();
                 callback?.Invoke();
             });
+
+        public static Task WaitAll(this IEnumerable<Task> tasks)
+        {
+            Task.WaitAll(tasks.ToArray());
+            return Task.CompletedTask;
+        }
+
+        public static Task<int> WaitAny(this IEnumerable<Task> tasks)
+            => Task.FromResult(Task.WaitAny(tasks.ToArray()));
     }
 }

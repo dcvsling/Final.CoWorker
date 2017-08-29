@@ -29,7 +29,9 @@ namespace EsportAsia.MainSite
 
         public void ConfigureAppConfiguration(WebHostBuilderContext context, IConfigurationBuilder builder)
             => context.Configuration = builder
-                .SetBasePath(new FileInfo(Assembly.GetEntryAssembly().Location).Directory.FullName)
+                .RunIf(
+                    context.HostingEnvironment.IsDevelopment,
+                    srv => srv.SetBasePath(Path.Combine(Directory.GetCurrentDirectory(),"wwwroot")))
                 .Build();
 
         public void ConfigureLogging(WebHostBuilderContext context, ILoggingBuilder builder)
@@ -61,7 +63,7 @@ namespace EsportAsia.MainSite
             {
                 services.Configure<KestrelServerOptions>(o => o.Listen(new IPEndPoint(
                 IPAddress.Loopback, 443),
-                l => l.UseHttps(Path.Combine(@"E:\\Workspace\\CoWorker\", "esportasia.pfx"), "1")));
+                l => l.UseHttps(Path.Combine(@"G:\\Workspace\\CoWorker\", "esportasia.pfx"), "1")));
             }
 
         }

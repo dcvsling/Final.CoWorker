@@ -47,6 +47,7 @@ namespace CoWorker.Net.Antiforgery
                 catch (AntiforgeryValidationException exception)
                 {
                     _logger.LogWarning(exception.Message, exception);
+                    _logger.LogInformation(context.ToJson());
                     context.Response.StatusCode = 400;
                 }
             }
@@ -68,7 +69,7 @@ namespace CoWorker.Net.Antiforgery
                     context.Request.Method,
                     EqualityComparer<string>.Create(
                         obj => obj.GetHashCode(),
-                        (x,y) => x.Equals(y, StringComparison.OrdinalIgnoreCase)))
+                        (x,y) => x.ToLower().Equals(y.ToLower(), StringComparison.OrdinalIgnoreCase)))
                 || !_env.IsDevelopment();
     }
 }

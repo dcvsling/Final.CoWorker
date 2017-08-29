@@ -35,9 +35,10 @@ namespace CoWorker.LightMvc.Controllers
             long size = files.Sum(f => f.Length);
             var filePath = Path.GetTempFileName();
 
-            files.Where(x => x.Length > 0)
+            await files.Where(x => x.Length > 0)
                 .Select(async x => await WriteFile(x, filePath))
-                .ToArray();
+                .ToArray()
+                .WaitAll();
             var context = _accessor.HttpContext;
 
             return new OkObjectResult(

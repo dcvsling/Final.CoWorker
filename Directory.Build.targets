@@ -2,6 +2,7 @@
 
   <PropertyGroup Condition="$(IsTest) == 'true'">
     <IsPackable>false</IsPackable>
+    <CopyGlobalFile>true</CopyGlobalFile>
   </PropertyGroup>
 
   <ItemGroup Condition="$(IsTest) == 'true'">
@@ -11,21 +12,24 @@
     <PackageReference Include="xunit.runner.visualstudio" Version="2.3.0-beta4-build3742" />
   </ItemGroup>
 
-  <Target Name="TestFileCopy" AfterTargets="AfterBuild" Condition="$(IsTest) == 'true'">
-    <Copy SourceFiles="$(SolutionDir)xunit.runner.json" DestinationFolder="$(OutDir)" />
-    <Copy SourceFiles="$(SolutionDir)appsettings.json" DestinationFolder="$(OutDir)" />
-    <Copy SourceFiles="$(SolutionDir)appsettings.Development.json" DestinationFolder="$(OutDir)" />
-  </Target>
-
   <PropertyGroup Condition="$(IsWebHost) == 'true'">
     <OutputType>Exe</OutputType>
+    <OutDir>wwwroot\</OutDir>
     <ApplicationInsightsResourceId>/subscriptions/39b32a2e-1324-439a-94b1-055278e9bfed/resourcegroups/cowker/providers/microsoft.insights/components/cowker</ApplicationInsightsResourceId>
+    <CopyGlobalFile>true</CopyGlobalFile>
   </PropertyGroup>
+
   <ItemGroup Condition="$(IsWebHost) == 'true'">
+    <Folder Include="$(OutDir)" />
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.0.0" />
     <WCFMetadata Include="Connected Services" />
   </ItemGroup>
-  <Target Name="CredentialFileCopy" AfterTargets="AfterBuild" Condition="$(IsWebHost) == 'true'">
-      <Copy SourceFiles="$(SolutionDir)esportasia.pfx" DestinationFolder="$(OutDir)"  ContinueOnError="true" />
-    </Target>
+  <Target Name="CopyAppSettings" AfterTargets="AfterBuild" Condition="$(CopyGlobalFile) == 'true'">
+    <Copy SourceFiles="$(SolutionDir)esportasia.pfx" DestinationFolder="$(OutDir)"  ContinueOnError="true" />
+    <Copy SourceFiles="$(SolutionDir)xunit.runner.json" DestinationFolder="$(OutDir)" />
+    <Copy SourceFiles="$(SolutionDir)appsettings.json" DestinationFolder="$(OutDir)" />
+    <Copy SourceFiles="$(SolutionDir)appsettings.Production.json" DestinationFolder="$(OutDir)" />
+    <Copy SourceFiles="$(SolutionDir)appsettings.Staging.json" DestinationFolder="$(OutDir)" />
+    <Copy SourceFiles="$(SolutionDir)appsettings.Development.json" DestinationFolder="$(OutDir)" />
+  </Target>
 </Project>

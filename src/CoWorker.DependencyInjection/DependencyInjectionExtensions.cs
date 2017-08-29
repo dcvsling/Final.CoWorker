@@ -53,5 +53,11 @@
 
         internal static Action<IServiceCollection> LazyCopyTo(this ICollection<ServiceDescriptor> services)
             => seq => services.Each(seq.Add);
+
+        public static T RunIf<T>(this T services, Func<bool> predicate, Action<T> config)
+        {
+            (predicate() ? config : Helper.Empty<T>()).Invoke(services);
+            return services;
+        }
     }
 }
