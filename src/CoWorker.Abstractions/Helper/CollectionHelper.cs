@@ -35,10 +35,10 @@
             => left.Keys.SequenceEqual(right.Keys) && left.Join(right, x => x.Key, x => x.Key, (x, y) => x.Equals(y))
                 .Aggregate((x, y) => x && y);
 
-		public static bool Exist<TKey, TValue>(this IDictionary<TKey, TValue> map, TKey key = default(TKey), TValue value = default(TValue))
+		public static bool Exist<TKey, TValue>(this IDictionary<TKey, TValue> map, TKey key = default, TValue value = default)
 			=> map.ContainsKey(key) && map[key].Equals(value);
-		
-        public static void TryAdd<TKey, TValue>(this IDictionary<TKey, TValue> map, TKey key = default(TKey), TValue value = default(TValue))
+
+        public static void TryAdd<TKey, TValue>(this IDictionary<TKey, TValue> map, TKey key = default, TValue value = default)
         {
             if (map.ContainsKey(key))
                 map.Add(key, value);

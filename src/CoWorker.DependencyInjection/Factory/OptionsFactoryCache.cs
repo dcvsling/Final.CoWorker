@@ -25,7 +25,7 @@
 
         public Boolean TryAdd(String name, T options)
             => this._cache.TryAdd(
-                name ?? string.Empty, 
+                name ?? string.Empty,
                 options ?? ObjectCreator(name)());
 
         public Boolean TryRemove(String name)

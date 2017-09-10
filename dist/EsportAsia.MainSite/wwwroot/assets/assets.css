@@ -1,0 +1,144 @@
+@import url("https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css");
+@import url("primeng/primeng.min.css");
+@import url("//amp.azure.net/libs/amp/1.8.0/skins/amp-default/azuremediaplayer.min.css");
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Material Icons'), local('MaterialIcons-Regular'), url(https://fonts.gstatic.com/s/materialicons/v21/2fcrYFNaTjcS6g4U3t-Y5ZjZjT5FdEJ140U2DJYC3mY.woff2) format('woff2');
+}
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+}
+
+body {
+    min-width: 320px;
+    font-family: "Microsoft YaHei" ! important;
+    font-size: 15px;
+    background-color: black;
+    color: white;
+    padding: 0px;
+    overflow: hidden;
+}
+
+.vjs-poster {
+    background-color: black;
+}
+
+.container-fluid {
+    padding: 0px;
+}
+
+.ui-widget-content {
+    font-family: "Microsoft YaHei" ! important;
+}
+
+.modal-open {
+    //overflow: visible;
+}
+
+.mainScroll {
+    height: calc(100vh - 70px);
+    height: -moz-calc(100vh - 70px);
+    height: -webkit-calc(100vh - 70px);
+    position: relative;
+    width: 100%;
+    overflow-y: scroll;
+    overflow-x: hidden;
+}
+
+@media screen and (max-width: 768px) {
+    /*.mainScroll::-webkit-scrollbar {
+        display: none;
+    }*/
+    .mainScroll {
+        width: calc(100% + 17px);
+        width: -moz-calc(100% + 17px);
+        width: -webkit-calc(100% + 17px);
+    }
+}
+
+
+/*body * {
+    line-height: 0;
+    padding: 0px;
+}*/
+
+.myloading {
+    width: 100%;
+}
+
+.myloading>img {
+    width: 10vw;
+    height: 10vw;
+    margin-left: 45vw;
+    margin-top: 30vh;
+}
+
+.blueBtn,
+.blueBtn:focus {
+    font-size: 15px;
+    height: 36px;
+    background-color: #0098D8;
+    color: white;
+    border-style: none;
+}
+
+.blueBtn:hover,
+.blueBtn:active,
+.blueBtn.active,
+.blueBtn.active:hover,
+.blueBtn.active:active,
+.blueBtn:active:hover {
+    background-color: #FFE100;
+    color: #0098D8;
+    border: 0px solid white;
+}
+
+*,
+*:hover,
+*:focus,
+*:active,
+.btn,
+.btn:hover,
+.btn:focus,
+.btn:active {
+    outline: none;
+}
+
+.blkBtn {
+    font-size: 15px;
+    height: 36px;
+    background-color: black;
+    border: 1px solid white;
+    color: white;
+    letter-spacing: 5px;
+    text-indent: 5px;
+    text-align: center;
+    margin: 5px;
+}
+
+.blkBtn:hover,
+.blkBtn:focus {
+    background-color: white;
+    border: 1px solid black;
+    color: black;
+}
+
+.news-content img {
+    max-width: 100%;
+    margin: 10px 0;
+}

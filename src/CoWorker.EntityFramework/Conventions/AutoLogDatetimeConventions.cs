@@ -9,7 +9,7 @@ namespace CoWorker.EntityFramework.EntityParts.Conventions
     using Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal;
     using Microsoft.EntityFrameworkCore.Metadata.Internal;
     using Microsoft.Extensions.Options;
-    using CoWorker.EntityFramework.EntityParts.ValueGenerators;
+    using CoWorker.EntityFramework.ValueGenerators;
 
     public class AutoLogDatetimeConventions : IPropertyAddedConvention, IConfigureOptions<ConventionSet>
 	{

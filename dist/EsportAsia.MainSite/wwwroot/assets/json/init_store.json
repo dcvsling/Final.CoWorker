@@ -1,0 +1,178 @@
+{
+    "store_left_menu": [{
+            "name": "全部商品",
+            "active": "active",
+			"link": "/store/list",
+			"queryParams":{"tag":0,"sort":0},
+            "query_method": "all",
+            "query_url": [{
+                    "sort": "onlive",
+                    "url": "/assets/json/fake/store.list.json"
+                },
+                {
+                    "sort": "hot",
+                    "url": "/assets/json/fake/store.list.json"
+                },
+                {
+                    "sort": "last",
+                    "url": "/assets/json/fake/store.list.json"
+                }
+            ]
+        },
+        {
+            "name": "最新商品",
+            "active": "",
+          "link": "/store/list",
+			"queryParams":{"tag":1,"sort":0},
+            "query_method": "last",
+            "query_url": [{
+                    "sort": "onlive",
+                    "url": "/assets/json/fake/store.list.json"
+                },
+                {
+                    "sort": "hot",
+                    "url": "/assets/json/fake/store.list.json"
+                },
+                {
+                    "sort": "last",
+                    "url": "/assets/json/fake/store.list.json"
+                }
+            ]
+        },
+        {
+            "name": "精選商品",
+            "active": "",
+           "link": "/store/list",
+			"queryParams":{"tag":2,"sort":0},
+            "query_method": "best",
+            "query_url": [{
+                    "sort": "onlive",
+                    "url": "/assets/json/fake/store.list.json"
+                },
+                {
+                    "sort": "hot",
+                    "url": "/assets/json/fake/store.list.json"
+                },
+                {
+                    "sort": "last",
+                    "url": "/assets/json/fake/store.list.json"
+                }
+            ]
+        },
+        {
+            "name": "潮流特區",
+            "active": "",
+            "link": "/store/list",
+			"queryParams":{"tag":3,"sort":0},
+            "query_method": "fashion",
+            "query_url": [{
+                    "sort": "onlive",
+                    "url": "/assets/json/fake/store.list.json"
+                },
+                {
+                    "sort": "hot",
+                    "url": "/assets/json/fake/store.list.json"
+                },
+                {
+                    "sort": "last",
+                    "url": "/assets/json/fake/store.list.json"
+                }
+            ]
+        },
+        {
+            "name": "品牌專區",
+            "active": "",
+           "link": "/store/list",
+			"queryParams":{"tag":4,"sort":0},
+            "query_method": "brand",
+            "query_url": [{
+                    "sort": "onlive",
+                    "url": "/assets/json/fake/store.list.json"
+                },
+                {
+                    "sort": "hot",
+                    "url": "/assets/json/fake/store.list.json"
+                },
+                {
+                    "sort": "last",
+                    "url": "/assets/json/fake/store.list.json"
+                }
+            ]
+        },
+        {
+            "name": "其他商品",
+            "active": "",
+           "link": "/store/list",
+			"queryParams":{"tag":5,"sort":0},
+            "query_method": "other",
+            "query_url": [{
+                    "sort": "onlive",
+                    "url": "/assets/json/fake/store.list.json"
+                },
+                {
+                    "sort": "hot",
+                    "url": "/assets/json/fake/store.list.json"
+                },
+                {
+                    "sort": "last",
+                    "url": "/assets/json/fake/store.list.json"
+                }
+            ]
+        }
+    ],
+    "subTitle": "排序方式",
+    "sortTag": [{
+            "label": "最低價格",
+            "value": "lowstPrice",
+            "active": "active"
+        },
+        {
+            "label": "最高價格",
+            "value": "highestPrice",
+            "active": ""
+        }
+    ],
+    "cart": {
+        "name": "購物車",
+        "link": "/cart",
+        "material_icon": "<i class='material-icons'>&#xE8CB;</i>",
+        "number": "99"
+    },
+    "item_title": {
+        "intro": [{
+                "title": "商品編號："
+            },
+            {
+                "title": "建議售價："
+            },
+            {
+                "title": "特惠價："
+            },
+            {
+                "title": ""
+            },
+            {
+                "title": "分享到："
+            },
+            {
+                "title": "訂購數量："
+            }
+        ],
+        "content": [{
+                "title": "商品說明"
+            },
+            {
+                "title": "商品規格"
+            },
+            {
+                "title": "商品保證"
+            },
+            {
+                "title": "運送與購買說明"
+            },
+            {
+                "title": "發票寄送"
+            }
+        ]
+    }
+}

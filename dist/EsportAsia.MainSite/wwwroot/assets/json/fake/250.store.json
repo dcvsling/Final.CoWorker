@@ -1,0 +1,77 @@
+{
+    "ProductId": "250",
+    "InformationId": "262366",
+    "Information": {
+        "InformationId": "262366",
+        "Title": "ROGGG Strix Wireless無線電競耳麥 隨行不設線",
+        "Description": "12/26 AM10:00~12/27 AM09   指定商品結帳再84折   6期0利率 每期 89元起 分期表",
+        "Content": "<img src='Art/DEMO/PIC.png'>",
+        "Image": "/Art/DEMO/u470.png",
+        "Url": "250"
+    },
+    "ProductDetailId": "250",
+    "ProductDetail": {
+        "ProductDetailId": "250",
+        "item_specification": [{
+                "label": "品牌",
+                "value": "asus"
+            },
+            {
+                "label": "類型",
+                "value": "頭戴式"
+            },
+            {
+                "label": "重量(g)",
+                "value": "600"
+            }
+        ],
+        "item_selector": {
+            "item_uid": "31351",
+            "selector": [{
+                    "title": "顏色：",
+                    "list": [{
+                            "value": "紅"
+                        },
+                        {
+                            "value": "綠"
+                        },
+                        {
+                            "value": "藍"
+                        }
+                    ]
+                },
+                {
+                    "title": "尺寸：",
+                    "list": [{
+                            "value": "大"
+                        },
+                        {
+                            "value": "中"
+                        },
+                        {
+                            "value": "小"
+                        }
+                    ]
+                }
+            ]
+        },
+        "item_warranty": "\n<p>我們所提供為全新產品，並提供以下保證： </p>\n<p>- 保固期限：1年 </p>\n<p>- 保固範圍：產品故障 </p>\n<p>顧客諮詢服務中心：本站客服中心</p>",
+        "item_notice": "\n<p>◆ 部分特殊商品某些配送地點需加收運費(將於網頁標示說明)，其它商品不另收運費。</p>\n<p>◆ 我們所提供的產品配送區域僅限於台灣本島（外島地區的朋友請利用台灣親友地址做為收貨地址）。</p>\n<p>◆ 在確認交易條件無誤且有庫存後，商品將於您付款完成後約1-3個工作天內送達您指定的地址。</p>\n<p>◆ 雜誌/預購/訂製等特殊商品依網頁說明時間出貨，特殊商品如與廠商約定送貨日，送貨日期需於訂購完成</p>\n<p>◆ 30天內。</p>\n<p>◆ 本網站配合環保署廢四機回收服務，廢四機回收專線:0800-085717。購物中心廢四機回收諮詢專線:</p>\n<p>◆ 02-77238585。</p>",
+        "item_nvoice": "\n<p>◆ 發票將在付款完成、出貨後開立，將會email通知您，更多詳情可參考「電子發票流程說明」，紙本發票</p>\n<p>◆ 請參考發票常見問題。</p>\n<p>◆ 發票金額是扣除您使用購物金或福利金折抵後的自付額。若您使用信用卡紅利或福利金後訂單金額全額折</p>\n<p>◆ 抵，將不另行開立發票。</p>\n"
+
+    },
+    "article_No": "1553821",
+    "tag": [
+        "last"
+    ],
+    "pricing": {
+        "twd": 3000
+    },
+    "selling_price": {
+        "twd": 1539
+    },
+    "store_cover": [
+        "/Art/DEMO/u470.png",
+        "/Art/DEMO/u470.png"
+    ]
+}

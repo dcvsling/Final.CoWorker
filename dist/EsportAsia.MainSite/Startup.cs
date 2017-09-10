@@ -1,95 +1,47 @@
-﻿using CoWorker.Net;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using CoWorker.Builder;
-using CoWorker.LightMvc;
-using Swashbuckle.AspNetCore.Swagger;
-using Microsoft.AspNetCore.Rewrite;
-using CoWorker.Net.Antiforgery;
-using Microsoft.AspNetCore;
-using System;
-using Microsoft.Extensions.PlatformAbstractions;
-using System.IO;
-using Microsoft.AspNetCore.Server.Kestrel.Core;
-using Microsoft.Extensions.Logging;
-using System.Net;
-using System.Reflection;
-
+﻿
 namespace EsportAsia.MainSite
 {
+    using CoWorker.Builder;
+    using CoWorker.Net;
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using Microsoft.AspNetCore.Rewrite;
+    using Microsoft.Extensions.PlatformAbstractions;
+    using System.IO;
+    using Microsoft.Extensions.Logging;
+    using System;
+    using CoWorker.LightMvc.Swagger;
+
     public class HostStartup : IHostingStartup
     {
         public static IWebHostBuilder Initialize(IWebHostBuilder builder)
         {
             (new HostStartup() as IHostingStartup).Configure(builder);
+
             return builder;
         }
 
         public void ConfigureAppConfiguration(WebHostBuilderContext context, IConfigurationBuilder builder)
-            => context.Configuration = builder
-                .RunIf(
-                    context.HostingEnvironment.IsDevelopment,
-                    srv => srv.SetBasePath(Path.Combine(Directory.GetCurrentDirectory(),"wwwroot")))
-                .Build();
+        {
+            context.Configuration = builder.Build();
+        }
 
         public void ConfigureLogging(WebHostBuilderContext context, ILoggingBuilder builder)
             => builder.SetMinimumLevel(LogLevel.Trace)
-                .AddConsole()
-                .AddDebug()
                 .AddConfiguration(context.Configuration)
                 .AddAzureWebAppDiagnostics();
 
         public void ConfigureService(WebHostBuilderContext context, IServiceCollection services)
         {
-            services
-                .AddSingleton<IHostingStartup, HostStartup>()
-                .AddDefaultService()
-                .AddElm()
-                .AddSecurityService()
-                    .AddAuth(
-                        OAuth.Google,
-                        OAuth.Facebook,
-                        OAuth.Twitch,
-                        OAuth.Cookie)
-                .AddIdentityService()
-                .AddEntityFrameworkService()
-                .AddNetTools()
-                .AddMvcLight()
-                .AddSwaggerGen(o => o.SwaggerDoc("v1", new Info { Title = "My API", Version = "v1" }))
-                .Configure<RewriteOptions>(o => o.AddRedirectToHttpsPermanent());
-            if(context.HostingEnvironment.IsDevelopment())
-            {
-                services.Configure<KestrelServerOptions>(o => o.Listen(new IPEndPoint(
-                IPAddress.Loopback, 443),
-                l => l.UseHttps(Path.Combine(@"G:\\Workspace\\CoWorker\", "esportasia.pfx"), "1")));
-            }
-
+            if (context.HostingEnvironment.IsDevelopment())
+                services.AddKestrelHttps();
+            Helper.InitDefaultJsonSetting();
         }
+
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            app.UseSwagger();
-
-            if (env.IsDevelopment())
-            {
-                app.UseDeveloperExceptionPage()
-                    .UseDatabaseErrorPage()
-                    .UseElmPage();
-            }
-            else
-            {
-                app.UseExceptionHandler("/");
-            }
-            app.UseAntiforgeryMiddleware();
-            app.UseRewriter();
-            app.UseAuthentication();
-            app.UseStaticFiles();
-            app.UseMvc();
-            app.UseSwaggerUI(c =>
-            {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My API V1");
-            });
         }
 
         void IHostingStartup.Configure(IWebHostBuilder builder)
@@ -100,8 +52,12 @@ namespace EsportAsia.MainSite
                 .ConfigureLogging(ConfigureLogging)
                 .ConfigureServices(ConfigureService)
                 .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseWebRoot("wwwroot")
+                //.RunIf(
+                //    () => builder.GetSetting(WebHostDefaults.EnvironmentKey) == "Development",
+                //    srv => srv.UseContentRoot(Path.Combine(Directory.GetCurrentDirectory(), "bin", "Debug", "netcoreapp2.0"))
+                //        .UseWebRoot("wwwroot"))
                 .UseSetting(WebHostDefaults.DetailedErrorsKey, "true")
-                .UseApplicationInsights()
                 .UseStartup<HostStartup>();
         }
     }

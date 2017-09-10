@@ -1,0 +1,77 @@
+:host>>>div {
+    font-family: "Microsoft YaHei" ! important;
+    color: white;
+}
+
+:host>>>.separate-lines>a:focus,
+:host>>>.separate-lines>a:hover,
+:host>>>.separate-lines>a.active,
+:host>>>.subTag>a:focus,
+:host>>>.subTag>a:hover,
+:host>>>.subTag>a.active {
+    color: #FFE100;
+    text-decoration: none;
+    border-bottom: 1px solid #FFE100;
+    background: -moz-linear-gradient(left, rgba(153, 153, 153, 0.01) 0%, rgba(0, 152, 216, 1) 100%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(left, rgba(153, 153, 153, 0.01) 0%, rgba(0, 152, 216, 1) 100%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right, rgba(153, 153, 153, 0.01) 0%, rgba(0, 152, 216, 1) 100%);
+    /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid: DXImageTransform.Microsoft.gradient( startColorstr='#03999999', endColorstr='#0098d8', GradientType=1);
+    /* IE6-9 */
+}
+
+:host>>>.separate-lines>a {
+    padding-left: 14px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    display: block;
+    border-bottom: 1px solid #0098D8;
+}
+
+:host>>>.subTitleSelector {
+    font-size: 15px;
+    z-index: 10;
+    position: absolute;
+    right: 30px;
+    width: 120px;
+    top: 36px;
+}
+
+ :host>>>.subTitleSelector .form-control,
+ :host>>>.subTitleSelector option {
+    color: black;
+}
+
+:host>>>.title {
+    margin-top: 30px;
+    position: absolute;
+    left: 0;
+    display: block;
+    width: 240px;
+}
+
+:host>>>.titleBlock {
+    position: relative;
+}
+
+
+/*
+:host>>>.nav-title {
+    display: block;
+    width: 170px;
+    background: #FFE100;
+    color: #0098D8;
+    background: linear-gradient(-45deg, transparent 30px, #FFE100 0);
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+:host>>>.nav-title i {
+    line-height: 0;
+    font-size: 30px;
+    vertical-align: middle;
+    padding-right: 10px;
+    padding-left: 10px;
+}*/

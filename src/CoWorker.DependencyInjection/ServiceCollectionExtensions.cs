@@ -16,20 +16,20 @@ namespace CoWorker.Builder
 
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection AddProvider<T>(
-            this IServiceCollection services,
-            Action<IServiceCollection> builder)
-        {
-            new InternalServiceProvider<T>(builder).AddTo(services);
-            return services;
-        }
+        //public static IServiceCollection AddProvider<T>(
+        //    this IServiceCollection services,
+        //    Action<IServiceCollection> builder)
+        //{
+        //    new InternalServiceProvider<T>(builder).AddTo(services);
+        //    return services;
+        //}
 
-        public static IServiceCollection AddProvider<T>(this IServiceCollection services)
-        {
-            var result = new ServiceCollection();
-            new InternalServiceProvider<T>(services).AddTo(result);
-            return result;
-        }
+        //public static IServiceCollection AddProvider<T>(this IServiceCollection services)
+        //{
+        //    var result = new ServiceCollection();
+        //    new InternalServiceProvider<T>(services).AddTo(result);
+        //    return result;
+        //}
 
         public static IServiceCollection AddDefaultService(this IServiceCollection services)
         {
@@ -47,12 +47,12 @@ namespace CoWorker.Builder
             this IServiceCollection services,
             Action<IConfigurationBuilder> builder = default)
         {
-            services.TryAddSingleton(typeof(IObjectCreator<>), typeof(DefaultFactoryObjectCreator<>));
-            services.TryAddSingleton(typeof(IObjectConfigure<>), typeof(ConfigureOptionsObjectConfigure<>));
-            services.TryAddSingleton(typeof(IObjectExtensions<>), typeof(DecoratorFactoryExtensions<>));
+            //services.TryAddSingleton(typeof(IObjectCreator<>), typeof(DefaultFactoryObjectCreator<>));
+            //services.TryAddSingleton(typeof(IObjectConfigure<>), typeof(ConfigureOptionsObjectConfigure<>));
+            //services.TryAddSingleton(typeof(IObjectExtensions<>), typeof(DecoratorFactoryExtensions<>));
             services.TryAddSingleton(typeof(IConfigureOptions<>), typeof(ConfigurationConfigureOptions<>));
-            services.TryAddSingleton(typeof(IObjectFactory<>), typeof(ObjectFactory<>));
-            services.TryAddSingleton(typeof(IOptionsCache<>), typeof(OptionsFactoryCache<>));
+            //services.TryAddSingleton(typeof(IObjectFactory<>), typeof(ObjectFactory<>));
+            //services.TryAddSingleton(typeof(IOptionsCache<>), typeof(OptionsFactoryCache<>));
 
             if(services.Any(x => x.ServiceType == typeof(WebHostBuilderContext)))
             {
@@ -68,7 +68,6 @@ namespace CoWorker.Builder
 
         public static IServiceCollection AddConfiguration(this IServiceCollection services, IConfiguration config)
             => services.Replace(ServiceDescriptor.Singleton(typeof(IConfiguration),config));
-
 
         private static IServiceCollection AddConfigurationConfigureOptions(
             this IServiceCollection services,

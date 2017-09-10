@@ -6,11 +6,10 @@
 
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "RCS1169:Mark field as read-only.", Justification = "<暫止>")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "IDE1006", Justification = "<暫止>")]
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Formatting", "RCS1057:Add empty line between declarations.", Justification = "<暫止>", Scope = "type", Target = "~T:CoWorker.Options.EnumerableOptions`1")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Formatting", "RCS1057:Add empty line between declarations.")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("樣式", "IDE0029:使用 coalesce 運算式")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Usage", "RCS1165:Unconstrained type parameter checked for null.")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Design", "RCS1158:Avoid static members in generic types.")]
 [assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Formatting", "RCS1057:Add empty line between declarations.")]
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Security", "SG0016:Controller method is vulnerable to CSRF", Justification = "<暫止>", Scope = "member", Target = "~M:CoWorker.EntityFramework.IdentityEfmController.Post")]
-[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Maintainability", "RCS1168:Parameter name differs from base name.", Justification = "<暫止>", Scope = "member", Target = "~M:CoWorker.Identity.DefaultIdentityConvention.Apply(Microsoft.AspNetCore.Builder.IdentityOptions)")]
+[assembly: System.Diagnostics.CodeAnalysis.SuppressMessage("Maintainability", "RCS1168:Parameter name differs from base name.")]
 

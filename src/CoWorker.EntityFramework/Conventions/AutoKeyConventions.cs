@@ -15,14 +15,13 @@
 		private IReadOnlyList<string> PK => new List<string>() { Id }.ToImmutableList();
 		public InternalEntityTypeBuilder Apply(InternalEntityTypeBuilder entityTypeBuilder)
 		{
-			if (null != entityTypeBuilder.Metadata.FindPrimaryKey() 
+			if (null != entityTypeBuilder.Metadata.FindPrimaryKey()
 				|| null != entityTypeBuilder.Metadata.FindProperty(Id)
 				|| (entityTypeBuilder.Metadata.ClrType?.GetProperties().Any(x => x.Name == Id) ?? false))
 				return entityTypeBuilder;
 			entityTypeBuilder.Property("Id",typeof(int), ConfigurationSource.Convention)
 				.Attach(entityTypeBuilder,ConfigurationSource.Convention);
 			entityTypeBuilder.PrimaryKey(PK, ConfigurationSource.Convention);
-			
 			return entityTypeBuilder;
 		}
 

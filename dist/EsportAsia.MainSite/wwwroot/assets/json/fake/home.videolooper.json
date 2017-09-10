@@ -1,0 +1,73 @@
+{
+    "list": [{
+            "Information": {
+                "InformationId": "never_loses",
+                "Title": "「FW NL ( NeVeR_LosEs ) - Main衝崩",
+                "Description": "「FW NL ( NeVeR_LosEs ) - Main衝崩",
+                "Content": "",
+                "Image": "",
+                "Url": "never_loses"
+            },
+            "Source": {
+                "src": "https://player.twitch.tv/?volume=0.5&!muted&channel=never_loses",
+                "type": "application/vnd.ms-sstr+xml"
+            }
+        },
+        {
+            "Information": {
+                "InformationId": "sam1268",
+                "Title": "超負荷 今天抽芒果",
+                "Description": "超負荷 今天抽芒果",
+                "Content": "",
+                "Image": "",
+                "Url": "sam1268"
+            },
+            "Source": {
+                "src": "https://player.twitch.tv/?volume=0.5&!muted&channel=sam1268",
+                "type": "application/vnd.ms-sstr+xml"
+            }
+        },
+        {
+            "Information": {
+                "InformationId": "tsm_dyrus",
+                "Title": "brother dyrus",
+                "Description": "brother dyrus",
+                "Content": "",
+                "Image": "",
+                "Url": "tsm_dyrus"
+            },
+            "Source": {
+                "src": "https://player.twitch.tv/?volume=0.5&!muted&channel=tsm_dyrus",
+                "type": "application/vnd.ms-sstr+xml"
+            }
+        },
+        {
+            "Information": {
+                "InformationId": "vickypan",
+                "Title": "【鳳梨妹】害害這是高端不看的實況 SoloRank衝鑽石",
+                "Description": "【鳳梨妹】害害這是高端不看的實況 SoloRank衝鑽石",
+                "Content": "",
+                "Image": "",
+                "Url": "vickypan"
+            },
+            "Source": {
+                "src": "https://player.twitch.tv/?volume=0.5&!muted&channel=vickypan",
+                "type": "application/vnd.ms-sstr+xml"
+            }
+        },
+        {
+            "Information": {
+                "InformationId": "wtf_winds123",
+                "Title": "【M.E. Winds】7/3 菁英丸的台服之旅",
+                "Description": "【M.E. Winds】7/3 菁英丸的台服之旅",
+                "Content": "",
+                "Image": "",
+                "Url": "wtf_winds123"
+            },
+            "Source": {
+                "src": "https://player.twitch.tv/?volume=0.5&!muted&channel=wtf_winds123",
+                "type": "application/vnd.ms-sstr+xml"
+            }
+        }
+    ]
+}

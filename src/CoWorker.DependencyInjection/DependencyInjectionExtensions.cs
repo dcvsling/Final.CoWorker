@@ -1,5 +1,6 @@
 ﻿namespace CoWorker.Builder
 {
+    using CoWorker.DependencyInjection.Abstractions;
     using Microsoft.Extensions.DependencyInjection;
 	using System;
     using System.Collections.Generic;
@@ -54,10 +55,22 @@
         internal static Action<IServiceCollection> LazyCopyTo(this ICollection<ServiceDescriptor> services)
             => seq => services.Each(seq.Add);
 
+        public static TObj Create<TObj>(this IObjectFactory<TObj> factory) where TObj : class
+            => factory.Create(string.Empty);
+
+        public static TObj Create<TObj>(this IObjectFactory<TObj> factory, Action<TObj> config) where TObj : class
+            => factory.Create(string.Empty).ConfigureBy(config);
+
         public static T RunIf<T>(this T services, Func<bool> predicate, Action<T> config)
         {
             (predicate() ? config : Helper.Empty<T>()).Invoke(services);
             return services;
+        }
+
+        public static T ConfigureBy<T>(this T t,Action<T> config)
+        {
+            config(t);
+            return t;
         }
     }
 }

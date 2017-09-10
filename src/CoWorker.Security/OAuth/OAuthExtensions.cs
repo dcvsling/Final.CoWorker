@@ -30,7 +30,7 @@ namespace CoWorker.Builder
         public static AuthenticationBuilder AddTwitch(this AuthenticationBuilder builder)
             => builder.AddOAuth<TwitchOptions, TwitchHandler>(TwitchOptions.AuthenticationScheme);
 
-        public static IServiceCollection AddAuth(this IServiceCollection services, params ConfigureDelegate<AuthenticationBuilder>[] oauths)
-            => oauths.Aggregate(services.AddAuthentication(), (seed, next) => next(seed)).Services;
+        //public static IServiceCollection AddAuth(this IServiceCollection services, params ConfigureDelegate<AuthenticationBuilder>[] oauths)
+        //    => oauths.Aggregate(services.AddAuthentication(), (seed, next) => next(seed)).Services;
     }
 }

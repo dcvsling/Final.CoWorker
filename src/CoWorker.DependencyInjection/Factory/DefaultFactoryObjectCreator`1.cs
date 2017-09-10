@@ -1,23 +1,31 @@
-﻿namespace CoWorker.DependencyInjection.Factory
+﻿using System.Linq;
+using System.Net;
+using CoWorker.Infrastructure.TypeStore;
+namespace CoWorker.DependencyInjection.Factory
 {
     using Microsoft.Extensions.DependencyInjection;
     using System;
+    using System.Collections.Generic;
 
     public class DefaultFactoryObjectCreator<T> : IObjectCreator<T>
         where T : class
     {
         private readonly IServiceProvider _provider;
+        private readonly ITypeStore _store;
 
         public DefaultFactoryObjectCreator(
-            IServiceProvider provider)
+            IServiceProvider provider,
+            ITypeStore store)
         {
             this._provider = provider;
+            this._store = store;
         }
-        public T Create(String name = null)
-            => ActivatorUtilities.GetServiceOrCreateInstance<T>(_provider);
+        public T Create(String name = Helper.EmptyString)
+            => ActivatorUtilities.GetServiceOrCreateInstance(_provider, FindClassType(typeof(T))) as T;
 
-        //=> typeof(T).GetConstructors().Any(x => !x.GetParameters().Any())
-        //    ? _factory.Get(typeof(T), name) as T
-        //    : ActivatorUtilities.GetServiceOrCreateInstance<T>(_provider);
+        public Type FindClassType(Type type)
+            => type.IsInterface
+                ? _store.Find(t => t.GetInterfaces().Contains(type))
+                : type;
     }
 }

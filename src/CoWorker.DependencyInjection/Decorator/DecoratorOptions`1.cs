@@ -7,7 +7,6 @@ namespace CoWorker.DependencyInjection.Decorator
 
     public class DecoratorOptions<T> : IDecoratorOptions<T> where T : class
     {
-        private T t;
         private readonly Func<T,T> _config;
         private readonly string _name;
 

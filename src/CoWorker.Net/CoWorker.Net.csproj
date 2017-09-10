@@ -8,10 +8,12 @@
     <PackageReference Include="Microsoft.AspNetCore.Antiforgery" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Hosting.Abstractions" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Rewrite" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Server.Kestrel.Https" Version="2.0.0" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\CoWorker.Abstractions\CoWorker.Abstractions.csproj" />
+    <ProjectReference Include="..\CoWorker.DependencyInjection\CoWorker.DependencyInjection.csproj" />
   </ItemGroup>
 
 </Project>

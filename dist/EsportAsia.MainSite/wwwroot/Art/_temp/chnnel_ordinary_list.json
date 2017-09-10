@@ -1,0 +1,50 @@
+//送出列出清單要求
+{
+    "user_account_uid": "1111", //number
+    "user_level": "3", //number
+    "list_type": "ordinary_chnnel_list", //string  此為清單類型,職業選手為"prefessional_chnnel_list",會決定"list_container"回傳的介面
+    "require_pre_page_number": "15", //要求每頁清單數量 number
+    "tag_sort": ["lol", "top10", "hot", "users_faverite"] //依tag排序回傳 string[]
+}
+
+
+//回傳素人頻道清單
+{
+    "user_account_uid": "1111", //number
+    "user_level": "3", //number
+    "list_type": "ordinary_chnnel_list", //string  此為清單類型,職業選手為
+    "require_pre_page_number": "15", //要求每頁清單數量 number
+    "require_page": "3", //要求第幾頁 此範例為排序之31號開始列出 number
+    "return_number": "15", //回傳此頁之清單數量 number
+    "tag_sort": ["lol", "top10", "hot", "users_faverite"], //依tag排序回傳 string[]
+    "list_container": ichnnel_type_container[] //或其他list_container[](未定),依"list_type"決定
+}
+//ichnnel_type_container
+{
+    "index": "31", //number
+    "chnnel_uid": "1", ///number
+    "account_name": "bebe9527", //string
+    "level": "3", //number
+    "chnnel_url": "http://localhost:4200/..", //string
+    "chnnel_container": ichnnel_container
+}
+//ichnnel_container
+{
+    "nick_name": "bebe", //string
+    "tags": ["lol", "top10", "hot", "職業", "簽約實況主"], //string[]
+    "title": "正在上路實況", //string
+    "online_viewers": "1200", //number
+    "video_img": "http://localhost:4200/..", //string
+    "profile_img": iprofile_img
+
+}
+//iprofile_img
+{
+    "x": "-10px",
+    "y": "20px",
+    "url": "http://localhost:4200/.."
+}
+
+//iteams_type_container
+
+//icart_type_container

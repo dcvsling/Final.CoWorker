@@ -1,0 +1,58 @@
+{
+    "ChannelId": "vickypan",
+    "User": {
+        "UserId": "vickypan",
+        "Information": {
+            "InformationId": "vickypanUser",
+            "Title": "鳳梨妹",
+            "Description": "",
+            "Content": "",
+            "Image": "https://static-cdn.jtvnw.net/jtv_user_pictures/vickypan-profile_image-7ad12a2413d300cf-300x300.jpeg",
+            "Url": "vickypan"
+        }
+    },
+    "IsLive": true,
+    "Information": {
+        "InformationId": "vickypan",
+        "Title": "【鳳梨妹】害害這是高端不看的實況 SoloRank衝鑽石",
+        "Description": "【鳳梨妹】害害這是高端不看的實況 SoloRank衝鑽石",
+        "Content": "",
+        "Image": "",
+        "Url": "vickypan"
+    },
+    "Streaming": {
+        "StreamingId": "vickypan",
+        "ContentType": "",
+        "Source": {
+            "src": "https://player.twitch.tv/?volume=0.5&!muted&channel=vickypan",
+            "type": "application/vnd.ms-sstr+xml"
+        }
+    },
+    "ManTime": {
+        "ManTimeId": "vickypan",
+        "Key": "",
+        "Value": {
+            "channel_online_viewers": 1212,
+            "channel_total_viewers": 8251565,
+            "favorites_counter": 3587,
+            "is_user_favorited": true,
+            "is_user_subscribed": true,
+            "is_user_donated": true
+        }
+    },
+    "Tag": {
+        "TagId": "vickypan",
+        "State": "",
+        "Value": "lol"
+    },
+    "is_user_favorited": true,
+    "is_user_subscribed": true,
+    "is_user_donated": true,
+    "LiveHost": {
+        "Key": "00270806c4a54255823ffa36ad72da77",
+        "Source": "rtmp://fordemostreaming-extrememedia.channel.mediaservices.windows.net:1935/live/7cd3ccd6645c40cb977c9e7224c31b9a"
+    },
+    "Chat": {
+        "src": "http://www.twitch.tv/chat/embed?channel=vickypan&darkpopout"
+    }
+}

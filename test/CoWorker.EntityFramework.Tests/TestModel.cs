@@ -23,14 +23,4 @@ namespace CoWorker.EntityFramework.Tests
         public string testC { get; set; } = "C";
     }
 
-    public class DbContext<TContext> : DbContext where  TContext:class
-    {
-        protected DbContext() : base()
-        {
-        }
-
-        public DbContext(DbContextOptions<DbContext<TContext>> options) : base(options)
-        {
-        }
-    }
 }

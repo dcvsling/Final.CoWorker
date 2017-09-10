@@ -1,0 +1,20 @@
+//回傳chnnel資訊
+{
+    "chnnel_id": 1,
+    "account_name": "bebe9527",
+    "level": 3,
+    "chnnel_url": "http://localhost:4200/..",
+    "chnnel_container": {
+        "nick_name": "bebe",
+        "tags": ["lol", "top10", "hot", "職業", "簽約實況主"],
+        "title": "正在上路實況",
+        "online_viewers": 1200,
+        "video_img": "http://localhost:4200/..",
+        "profile_img": {
+            "x": "-10px",
+            "y": "20px",
+            "url": "http://localhost:4200/.."
+        }
+    }
+}
+

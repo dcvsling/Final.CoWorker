@@ -1,0 +1,58 @@
+{
+    "ChannelId": "sam1268",
+    "User": {
+        "UserId": "sam1268",
+        "Information": {
+            "InformationId": "sam1268User",
+            "Title": "超負荷",
+            "Description": "",
+            "Content": "",
+            "Image": "https://static-cdn.jtvnw.net/jtv_user_pictures/sam1268-profile_image-fde38da98d1a7f77-300x300.jpeg",
+            "Url": "sam1268"
+        }
+    },
+    "IsLive": true,
+    "Information": {
+        "InformationId": "sam1268",
+        "Title": "超負荷 今天抽芒果",
+        "Description": "超負荷 今天抽芒果",
+        "Content": "",
+        "Image": "",
+        "Url": "sam1268"
+    },
+    "Streaming": {
+        "StreamingId": "sam1268",
+        "ContentType": "",
+        "Source": {
+            "src": "https://player.twitch.tv/?volume=0.5&!muted&channel=sam1268",
+            "type": "application/vnd.ms-sstr+xml"
+        }
+    },
+    "ManTime": {
+        "ManTimeId": "sam1268",
+        "Key": "",
+        "Value": {
+            "channel_online_viewers": 4802,
+            "channel_total_viewers": 8201769,
+            "favorites_counter": 10958,
+            "is_user_favorited": true,
+            "is_user_subscribed": true,
+            "is_user_donated": true
+        }
+    },
+    "Tag": {
+        "TagId": "sam1268",
+        "State": "",
+        "Value": "lol"
+    },
+    "is_user_favorited": true,
+    "is_user_subscribed": true,
+    "is_user_donated": true,
+    "LiveHost": {
+        "Key": "00270806c4a54255823ffa36ad72da77",
+        "Source": "rtmp://fordemostreaming-extrememedia.channel.mediaservices.windows.net:1935/live/7cd3ccd6645c40cb977c9e7224c31b9a"
+    },
+    "Chat": {
+        "src": "http://www.twitch.tv/chat/embed?channel=sam1268&darkpopout"
+    }
+}

@@ -1,0 +1,121 @@
+:host>>>div {
+    font-family: "Microsoft YaHei" ! important;
+    color: white;
+}
+
+:host>>>.separate-lines>a:focus,
+:host>>>.separate-lines>a:hover,
+:host>>>.separate-lines>a.active,
+:host>>>.subTag>a:focus,
+:host>>>.subTag>a:hover,
+:host>>>.subTag>a.active {
+    color: #0098D8;
+    text-decoration: none;
+    border-bottom: 3px solid #0098D8;
+}
+
+:host>>>.subTitle {
+    position: relative;
+    display: inline;
+    float: right;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    right: 30px;
+}
+
+:host>>>.title {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    border-bottom: 3px solid #666;
+    padding-bottom: 14px;
+}
+
+:host>>>.title span a {
+    color: #666
+}
+
+:host>>>.titleBlock {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+
+/*
+:host>>>.nav-title {
+    display: inline-block;
+    width: 170px;
+    background: #FFE100;
+    color: #0098D8;
+    background: linear-gradient(-45deg, transparent 30px, #FFE100 0);
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+:host>>>.nav-title i {
+    line-height: 0;
+    font-size: 30px;
+    vertical-align: middle;
+    padding-right: 10px;
+    padding-left: 10px;
+}*/
+
+:host>>>.separate-lines>a {
+    border-right: 1px solid #666;
+    padding: 15px;
+    padding-right: 30px;
+    padding-left: 30px;
+}
+
+:host>>>.separate-lines:last-child>a {
+    border-right: 0px solid #FFE100;
+}
+
+
+/*  :host>>>.nav>li>span {
+        position: relative;
+        display: block;
+        padding: 10px 50px;
+		cursor: pointer;
+		color:#666;
+		
+	//	 border-bottom: 3px solid #666;
+	}
+	:host>>>.nav>li{
+border-left: 1px solid #666;
+	}
+	:host>>>.nav>li:first-child{
+		border-left: 0px solid #666;
+	}
+    :host>>>.nav-tabs{
+		margin-bottom:20px;
+		border-bottom: 1px solid #666;
+	//	 box-shadow: 0px 0px 0px 3px  #666  inset;
+	}
+     :host>>>.nav-tabs>li>span {
+        margin-right: 2px;
+      //  line-height: 1.42857143;
+      //  border-bottom: 1px solid #666;
+      //  border-radius: 4px 4px 0 0;
+    }
+    
+     :host>>>.nav>li>span:focus,
+     :host>>>.nav>li>span:hover {
+        text-decoration: none;
+      //  background-color: #eee;
+    }
+    
+     :host>>>.nav-tabs>li>span:hover {
+       // border-color: #eee #eee #ddd;
+    }
+    
+     :host>>>.nav-tabs>li.active>span,
+     :host>>>.nav-tabs>li.active>span:focus,
+     :host>>>.nav-tabs>li.active>span:hover {
+        color: #0098D8;
+		border-bottom: 3px solid #0098D8;
+        //background-color: #fff;
+       // border: 1px solid #ddd;
+       // border-bottom-color: transparent;
+    }*/

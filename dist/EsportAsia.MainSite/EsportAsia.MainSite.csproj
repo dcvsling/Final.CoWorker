@@ -3,19 +3,28 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <IsWebHost>true</IsWebHost>
+    <ApplicationInsightsAnnotationResourceId>/subscriptions/5bf9b7d5-c9a8-4c0c-b56e-818f849aaf76/resourceGroups/esport-asia/providers/microsoft.insights/components/cowker</ApplicationInsightsAnnotationResourceId>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath>E:\Workspace\CoWorker\dist\output\</OutputPath>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.1.1" />
     <PackageReference Include="Microsoft.AspNetCore.All" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.Elm" Version="0.2.2" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="1.0.0" />
     <ProjectReference Include="..\..\src\CoWorker.Abstractions\CoWorker.Abstractions.csproj" />
     <ProjectReference Include="..\..\src\CoWorker.DependencyInjection\CoWorker.DependencyInjection.csproj" />
-    <ProjectReference Include="..\..\src\CoWorker.EntityFramework\CoWorker.EntityFramework.csproj" />
-    <ProjectReference Include="..\..\src\CoWorker.Infrastructure\CoWorker.Infrastructure.csproj" />
-    <ProjectReference Include="..\..\src\CoWorker.LightMvc\CoWorker.LightMvc.csproj" />
     <ProjectReference Include="..\..\src\CoWorker.Net\CoWorker.Net.csproj" />
-    <ProjectReference Include="..\..\src\CoWorker.Security\CoWorker.Security.csproj" />
+    <ProjectReference Include="..\..\src\models\CoWorker.Models.Blogs\CoWorker.Models.Blogs.csproj" />
+    <ProjectReference Include="..\..\src\models\CoWorker.Models.HostingStartupBase\CoWorker.Models.HostingStartupBase.csproj" />
+    <ProjectReference Include="..\..\src\models\CoWorker.Models.Security\CoWorker.Models.Security.csproj" />
+    <ProjectReference Include="..\..\src\models\CoWorker.Models.Swagger\CoWorker.Models.Swagger.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0" />
+    <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="2.0.0" />
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
   </ItemGroup>
 </Project>

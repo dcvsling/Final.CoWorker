@@ -27,7 +27,7 @@ namespace CoWorker.DependencyInjection.Factory
             => GetConfiguredOptions(name).Append(GetPostConfiguredOptions(name)).Invoke(options);
 
         private Action<T> GetConfiguredOptions(string name)
-           => !_configs.Any() 
+           => !_configs.Any()
                 ? Helper.Empty<T>()
                 : _configs.Select(
                      x => x is IConfigureNamedOptions<T> named

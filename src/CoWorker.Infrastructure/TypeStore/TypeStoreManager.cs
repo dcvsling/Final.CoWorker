@@ -30,7 +30,7 @@ namespace CoWorker.Infrastructure.TypeStore
         public Type Find(Func<Type, bool> predicate)
             => _typeCache.TryGetValue(predicate, out var result)
                 ? result ?? FindAndCache(predicate)
-                : throw new IndexOutOfRangeException();
+                : FindAndCache(predicate);
 
         private Type FindAndCache(Func<Type, bool> predicate)
         {

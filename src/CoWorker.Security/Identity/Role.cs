@@ -3,10 +3,10 @@ namespace CoWorker.Identity
 {
 	using System;
 	using Microsoft.AspNetCore.Identity;
+    using System.Collections.Generic;
 
-    public abstract class Role : IdentityRole<Guid>
+    public class Role : IdentityRole<Guid>
 	{
+        public List<Claim> Claims { get; set; }
 	}
-
-    
 }

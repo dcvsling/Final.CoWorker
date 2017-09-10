@@ -1,0 +1,212 @@
+<!doctype html>
+<html>
+
+<head>
+    <link href="http://amp.azure.net/libs/amp/1.8.0/skins/amp-default/azuremediaplayer.min.css" rel="stylesheet">
+
+    <script src="http://amp.azure.net/libs/amp/1.8.0/azuremediaplayer.min.js"></script>
+</head>
+
+<body class="container-fluid">
+    <video id="azuremediaplayer" class="azuremediaplayer amp-default-skin amp-big-play-centered" tabindex="0"></video>
+    <script>
+        var myOptions = {
+            "nativeControlsForTouch": false,
+            controls: true,
+            autoplay: true,
+            width: "640",
+            height: "400",
+        }
+        myPlayer = amp("azuremediaplayer", myOptions);
+        myPlayer.src([{
+            "src": "//nocdn-extrememedia.streaming.mediaservices.windows.net/275f3b79-353f-492c-99da-0c0f8bc3336c/d98a404a-f604-4ab4-a737-ea4a5a114f0c.ism/manifest",
+            "type": "application/vnd.ms-sstr+xml"
+        }]);
+    </script>
+
+    <style>
+        @font-face {
+            font-family: 'Material Icons';
+            font-style: normal;
+            font-weight: 400;
+            src: url(https://example.com/MaterialIcons-Regular.eot);
+            /* For IE6-8 */
+            src: local('Material Icons'), local('MaterialIcons-Regular'), url(https://example.com/MaterialIcons-Regular.woff2) format('woff2'), url(https://example.com/MaterialIcons-Regular.woff) format('woff'), url(https://example.com/MaterialIcons-Regular.ttf) format('truetype');
+        }
+        
+        .azuremediaplayer {
+            font-family: "Microsoft YaHei" ! important;
+        }
+        
+        .amp-time-tip {
+            color: #0098D8;
+        }
+        /*按鈕範圍*/
+        
+        .amp-default-skin .vjs-control-bar .amp-controlbaricons-right .vjs-control,
+        .amp-default-skin .vjs-control-bar .amp-controlbaricons-left .vjs-control {
+            padding-top: 6px;
+            padding-right: 6px;
+        }
+        /*左邊按鈕群*/
+        
+        .amp-default-skin .vjs-menu {
+            left: 12px;
+            margin-bottom: 10px;
+        }
+        /*音量*/
+        
+        .amp-default-skin .vjs-mute-control:before,
+        .amp-default-skin .vjs-volume-menu-button:before {
+            content: "\e050";
+            font-family: 'Material Icons';
+            font-weight: normal;
+            font-style: normal;
+            width: 22px;
+            height: 22px;
+            font-size: 22px;
+            line-height: 1em;
+            margin: 6px;
+            padding: 0;
+            text-align: left;
+        }
+        /*靜音*/
+        
+        .amp-default-skin .vjs-mute-control.vjs-vol-0:before,
+        .amp-default-skin .vjs-volume-menu-button.vjs-vol-0:before {
+            content: "\e04f";
+            font-family: 'Material Icons';
+            font-weight: normal;
+            font-style: normal;
+            width: 22px;
+            height: 22px;
+            font-size: 22px;
+            line-height: 1em;
+            margin: 6px;
+            padding: 0;
+            text-align: left;
+        }
+        /*開始*/
+        
+        .amp-default-skin .vjs-play-control:before {
+            content: "\e037";
+            font-family: 'Material Icons';
+            font-weight: normal;
+            font-style: normal;
+            width: 22px;
+            height: 22px;
+            font-size: 22px;
+            line-height: 1em;
+            margin: 6px;
+            padding: 0;
+            text-align: left;
+        }
+        /*暫停*/
+        
+        .amp-default-skin.vjs-playing .vjs-play-control:before {
+            content: "\e034";
+            font-family: 'Material Icons';
+            font-weight: normal;
+            font-style: normal;
+            width: 22px;
+            height: 22px;
+            font-size: 22px;
+            line-height: 1em;
+            margin: 6px;
+            padding: 0;
+            text-align: left;
+        }
+        /*全螢幕*/
+        
+        .amp-default-skin .vjs-fullscreen-control:before {
+            content: "\e5d0";
+            font-family: 'Material Icons';
+            font-weight: normal;
+            font-style: normal;
+            width: 22px;
+            height: 22px;
+            font-size: 22px;
+            line-height: 1em;
+            margin: 6px;
+            padding: 0;
+            text-align: left;
+        }
+        /*取消全螢幕*/
+        
+        .amp-default-skin.vjs-fullscreen .vjs-fullscreen-control:before {
+            content: "\e5d1";
+            font-family: 'Material Icons';
+            font-weight: normal;
+            font-style: normal;
+            width: 22px;
+            height: 22px;
+            font-size: 22px;
+            line-height: 1em;
+            margin: 6px;
+            padding: 0;
+            text-align: left;
+        }
+        /*畫質*/
+        
+        .amp-default-skin .vjs-control-bar .amp-quality-control.quality-4:before {
+            content: "\e8b8";
+            font-family: 'Material Icons';
+            font-weight: normal;
+            font-style: normal;
+            width: 22px;
+            height: 22px;
+            font-size: 22px;
+            line-height: 1em;
+            margin: 6px 6px 6px 6px;
+            padding: 0;
+            text-align: left;
+        }
+        /*時間條刻度逗點*/
+        
+        .amp-default-skin .vjs-slider-handle:before {
+            content: "";
+        }
+        /*時間條*/
+        
+        .amp-default-skin .vjs-play-progress {
+            background-color: #FFE100;
+        }
+        /*live*/
+        
+        .amp-default-skin .vjs-control-bar .amp-live-control.amp-live-on {
+            color: #FFE100;
+        }
+        /*時間條背景*/
+        
+        .amp-default-skin .vjs-slider {
+            background-color: white;
+        }
+        /*live icon*/
+        
+        .amp-default-skin .vjs-control-bar .amp-live-control:before {
+            font-size: 22px;
+        }
+        /*文字字體*/
+        
+        .amp-default-skin .vjs-time-controls,
+        .amp-default-skin .vjs-time-divider,
+        .amp-default-skin .vjs-live-display,
+        .amp-default-skin .vjs-live-controls {
+            font-size: 16px;
+        }
+        /*"現場" 高度*/
+        
+        .amp-default-skin .vjs-live-display,
+        .amp-default-skin .vjs-live-controls {
+            line-height: 2em;
+        }
+        /*"現場" 位置*/
+        
+        .amp-default-skin .vjs-control-bar .amp-live-control .vjs-live-display {
+            margin-top: -5px;
+            text-indent: 25px;
+        }
+    </style>
+</body>
+
+</html>

@@ -35,7 +35,5 @@ namespace CoWorker.DependencyInjection.Factory
             Action<T, Action<T>> Merge(Action<T, Action<T>> left, Action<T, Action<T>> right)
                 => (o, cb) => left(o, x => right(x, cb));
         }
-
-
     }
 }

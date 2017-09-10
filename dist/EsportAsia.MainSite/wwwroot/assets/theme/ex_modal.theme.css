@@ -1,0 +1,70 @@
+       .modalBtnBody label {
+           font-weight: 550;
+       }
+       
+       .modalBtnBody {
+           width: 100%;
+       }
+       
+       .modalBtnBody .btn {
+           margin: 20px auto;
+           display: block;
+           color: white;
+           background-color: #DDDDDD;
+           border-style: none;
+           letter-spacing: 5px;
+           text-indent: 5px;
+           text-align: center;
+       }
+       
+       .modalBtnBody .btn.disabled,
+       .modalBtnBody .btn[disabled],
+       .modalBtnBody fieldset[disabled] .btn,
+       .modalBtnBody .btn.disabled:hover,
+       .modalBtnBody .btn:hover[disabled],
+       .modalBtnBody fieldset[disabled] .btn:hover {
+           opacity: 0.3;
+           background-color: #DDDDDD;
+       }
+       
+       .modalBtnBody .btn:hover,
+       .modalBtnBody .btn:focus {
+           background-color: #0098D8;
+           border-style: none;
+       }
+       
+       .modalBtnBody .alert.alert-danger {
+           padding: 10px;
+           margin-bottom: 0;
+       }
+       
+       .modalBtnBody .form-control {
+           height: 40px;
+           font-size: 16px;
+       }
+       
+       .modalBtnHeader .title {
+           text-align: center;
+       }
+       
+       .modalBtnHeader .title span {
+           color: #0098D8;
+           font-size: 18px;
+           font-weight: 700;
+       }
+       /*.modalBtn .blkBtn {
+           background-color: black;
+           border: 1px solid white;
+           color: white;
+           letter-spacing: 5px;
+           text-indent: 5px;
+           text-align: center;
+           margin: 5px;
+       }
+       
+       .modalBtn .blkBtn:hover,
+       .modalBtn .blkBtn:focus {
+           background-color: white;
+           border: 1px solid black;
+           color: black;
+       }*/

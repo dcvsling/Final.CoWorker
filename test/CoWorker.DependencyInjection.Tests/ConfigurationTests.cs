@@ -37,9 +37,9 @@ namespace CoWorker.DependencyInjection.Tests
                     }))
                 ))
             {
-                var config = new ConfigurationConfigureOptions<DataSource>(provider.GetService<IConfiguration>());
+                var config = new ConfigurationConfigureOptions<DataSource>(provider.GetService<IConfiguration>(),null);
                 var actual = new DataSource();
-                config.Configure(actual);
+                config.PostConfigure(string.Empty,actual);
                 Assert.Equal("esport-asia-db", actual.Name);
             }
         }
@@ -58,7 +58,7 @@ namespace CoWorker.DependencyInjection.Tests
                 var configs = provider.GetServices<IObjectConfigure<DataSource>>();
                 var actual = configs.Aggregate(
                     new DataSource(),
-                    (seed, next) => next.Configure(seed));
+                    (seed, next) => next.Configure("esport-asia-db", seed));
                 Assert.Equal("esport-asia-db", actual.Name);
             }
         }

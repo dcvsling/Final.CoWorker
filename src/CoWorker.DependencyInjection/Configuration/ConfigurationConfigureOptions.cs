@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using Newtonsoft.Json;
+using System.Linq;
 using Microsoft.Extensions.Logging;
 
 namespace CoWorker.DependencyInjection.Configuration
@@ -10,20 +11,23 @@ namespace CoWorker.DependencyInjection.Configuration
     using Microsoft.Extensions.Configuration;
     using System.Collections.Generic;
 
-    public class ConfigurationConfigureOptions<TOptions> : IConfigureNamedOptions<TOptions>
+    public class ConfigurationConfigureOptions<TOptions> : IPostConfigureOptions<TOptions>
         where TOptions : class
     {
         private readonly IConfiguration _config;
         private readonly Type _type = typeof(TOptions);
-        public ConfigurationConfigureOptions(IConfiguration config)
+        private readonly ILogger<ConfigurationConfigureOptions<TOptions>> _logger;
+
+        public ConfigurationConfigureOptions(IConfiguration config,ILogger<ConfigurationConfigureOptions<TOptions>> logger)
         {
             _config = config;
+            this._logger = logger;
         }
-        public void Configure(String name, TOptions options)
-            => Bind(GetConfigurationByName(name), options);
-                
-        public void Configure(TOptions options)
-            => Configure(string.Empty,options);
+        public void PostConfigure(String name, TOptions options)
+        {
+            Bind(GetConfigurationByName(name), options);
+            _logger.LogInformation($"{typeof(TOptions)} is Configured by name:{name}");
+        }
 
         private IConfigurationSection GetConfigurationByName(string name = null)
             => !string.IsNullOrEmpty(name)

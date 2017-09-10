@@ -1,4 +1,5 @@
-﻿using System;
+﻿using System.Dynamic;
+using System;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace CoWorker.Builder
@@ -18,7 +19,7 @@ namespace CoWorker.Builder
             services.TryAddSingleton(typeof(ICache<>), typeof(DictionaryCache<>));
             services.TryAddSingleton<PropertyAccessorStore>();
             services.TryAddSingleton(typeof(ITypeMapper<>), typeof(TypeMapper<>));
-                
+            services.TryAddSingleton<QueryFactory>();
             return services;
         }
 

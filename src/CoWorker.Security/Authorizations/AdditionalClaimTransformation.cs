@@ -6,7 +6,6 @@ using System.Collections.Generic;
 
 namespace CoWorker.Security.Authentication
 {
-
     public class AdditionalClaimTransformation : IClaimsTransformation
     {
         private readonly IEnumerable<IClaimProvider> _providers;

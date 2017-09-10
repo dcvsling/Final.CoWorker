@@ -15,12 +15,16 @@ namespace CoWorker.Net.Antiforgery
 
     public class AntiforgeryMiddleware
 	{
-        private string[] IgnoreValidMethod = new string[] { "GET", "HEAD", "TRACE", "OPTIONS" };
-        private string[] EntryEndPoint = new string[] { "/", "/index.html" };
+        private string[] IgnoreValidMethod = { "GET", "HEAD", "TRACE", "OPTIONS" };
         private readonly IAntiforgery _antiforgery;
         private readonly ILogger<AntiforgeryMiddleware> _logger;
         private readonly AntiforgeryOptions _options;
         private readonly IHostingEnvironment _env;
+        private IEqualityComparer<string> equaltyComparer
+            => EqualityComparer<string>.Create(
+                obj => obj.GetHashCode(),
+                (x, y) => x.ToLower().Equals(y.ToLower(),
+                    StringComparison.OrdinalIgnoreCase));
 
         public AntiforgeryMiddleware(
             IHostingEnvironment env,
@@ -36,40 +40,35 @@ namespace CoWorker.Net.Antiforgery
 
         async public Task Invoke(HttpContext context)
         {
-            string path = context.Request.Path.Value;
-
-            if (ShouldValidate(context))
-            {
-                try
-                {
-                    await _antiforgery.ValidateRequestAsync(context);
-                }
-                catch (AntiforgeryValidationException exception)
-                {
-                    _logger.LogWarning(exception.Message, exception);
-                    _logger.LogInformation(context.ToJson());
-                    context.Response.StatusCode = 400;
-                }
-            }
-            else
-            {
-                var tokens = _antiforgery.GetAndStoreTokens(context);
-                context.Response.Cookies.Append(_options.Cookie.Name, tokens.RequestToken, _options.Cookie.Build(context));
-            }
+            var isValid = ShouldValidate(context) ? ValidToken : Helper.Default<HttpContext,Task>(Task.CompletedTask);
+            var isGenerateOrValid = ShouldGenerate(context) ? GenerateToken : isValid;
+            await isGenerateOrValid(context);
         }
         public RequestDelegate Middleware(RequestDelegate next)
             => async ctx =>
             {
+
                 await Invoke(ctx);
                 await (ctx.Response.StatusCode == 400 ? Task.CompletedTask : next(ctx));
+                //await next(ctx);
             };
+
+        private bool ShouldGenerate(HttpContext context)
+            => !context.Request.Cookies.Any(x => x.Key == _options.Cookie.Name);
 
         private bool ShouldValidate(HttpContext context)
             => !IgnoreValidMethod.Contains(
                     context.Request.Method,
-                    EqualityComparer<string>.Create(
-                        obj => obj.GetHashCode(),
-                        (x,y) => x.ToLower().Equals(y.ToLower(), StringComparison.OrdinalIgnoreCase)))
-                || !_env.IsDevelopment();
+                    equaltyComparer);
+
+        private Task GenerateToken(HttpContext context)
+        {
+            var tokens = _antiforgery.GetAndStoreTokens(context);
+            context.Response.Cookies.Append(_options.Cookie.Name, tokens.RequestToken, _options.Cookie.Build(context));
+            return Task.CompletedTask;
+        }
+
+        private Task ValidToken(HttpContext context)
+            => _antiforgery.ValidateRequestAsync(context);
     }
 }

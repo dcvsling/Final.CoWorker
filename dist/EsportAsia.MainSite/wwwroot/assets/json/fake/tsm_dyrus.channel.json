@@ -1,0 +1,58 @@
+{
+    "ChannelId": "tsm_dyrus",
+    "User": {
+        "UserId": "tsm_dyrus",
+        "Information": {
+            "InformationId": "tsm_dyrusUser",
+            "Title": "Tsm_Dyrus",
+            "Description": "",
+            "Content": "",
+            "Image": "https://static-cdn.jtvnw.net/jtv_user_pictures/tsm_dyrus-profile_image-65fe199f18b9e0ff-300x300.png",
+            "Url": "tsm_dyrus"
+        }
+    },
+    "IsLive": true,
+    "Information": {
+        "InformationId": "tsm_dyrus",
+        "Title": "brother dyrus",
+        "Description": "brother dyrus",
+        "Content": "",
+        "Image": "",
+        "Url": "tsm_dyrus"
+    },
+    "Streaming": {
+        "StreamingId": "tsm_dyrus",
+        "ContentType": "",
+        "Source": {
+            "src": "https://player.twitch.tv/?volume=0.5&!muted&channel=tsm_dyrus",
+            "type": "application/vnd.ms-sstr+xml"
+        }
+    },
+    "ManTime": {
+        "ManTimeId": "tsm_dyrus",
+        "Key": "",
+        "Value": {
+            "channel_online_viewers": 9506,
+            "channel_total_viewers": 193664521,
+            "favorites_counter": 51618,
+            "is_user_favorited": true,
+            "is_user_subscribed": true,
+            "is_user_donated": true
+        }
+    },
+    "Tag": {
+        "TagId": "tsm_dyrus",
+        "State": "",
+        "Value": "lol"
+    },
+    "is_user_favorited": true,
+    "is_user_subscribed": true,
+    "is_user_donated": true,
+    "LiveHost": {
+        "Key": "00270806c4a54255823ffa36ad72da77",
+        "Source": "rtmp://fordemostreaming-extrememedia.channel.mediaservices.windows.net:1935/live/7cd3ccd6645c40cb977c9e7224c31b9a"
+    },
+    "Chat": {
+        "src": "http://www.twitch.tv/chat/embed?channel=tsm_dyrus&darkpopout"
+    }
+}

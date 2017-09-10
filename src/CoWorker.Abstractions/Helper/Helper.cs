@@ -1,10 +1,14 @@
 ﻿namespace System
 {
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Serialization;
     using System.Collections.Generic;
+    using System.Threading.Tasks;
+
     public static class Helper
     {
         public const string EmptyString = "";
-
+        public static T[] EmptyArray<T>() => new T[] { };
         public static IEnumerable<T> Group<T>(params T[] ts) => ts;
 
         public static Func<object> CreateFactory(Type type)
@@ -36,8 +40,21 @@
         public static Action<T, T2> Empty<T, T2>() => (x, y) => EmptyAction();
         private readonly static Func<object> DefaultMethod = () => default;
         public static Func<object> Default() => DefaultMethod;
-        public static Func<TResult> Default<TResult>() => () => default;
-        public static Func<T, TResult> Default<T, TResult>() => x => Default<TResult>()();
-        public static Func<T, T2, TResult> Default<T, T2, TResult>() => (x, y) => Default<TResult>()();
+        public static Func<TResult> Default<TResult>(TResult result = default) => () => result;
+        public static Func<T, TResult> Default<T, TResult>(TResult result = default) => x => Default(result)();
+        public static Func<T, T2, TResult> Default<T, T2, TResult>(TResult result = default) => (x, y) => Default(result)();
+        public static void InitDefaultJsonSetting()
+        {
+            JsonConvert.DefaultSettings = () => new JsonSerializerSettings
+            {
+                Formatting = Formatting.Indented,
+                MissingMemberHandling = MissingMemberHandling.Ignore,
+                NullValueHandling = NullValueHandling.Ignore,
+                PreserveReferencesHandling = PreserveReferencesHandling.None,
+                TypeNameHandling = TypeNameHandling.All,
+                ReferenceLoopHandling = ReferenceLoopHandling.Serialize,
+                Converters = { GuidConverter.Default }
+            };
+        }
     }
 }

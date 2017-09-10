@@ -1,0 +1,33 @@
+{
+    "list": [{
+            "ChannelId": "hearthstonezhtw",
+            "InformationId": "hearthstonezhtw",
+            "UserId": "hearthstonezhtw"
+        },
+        {
+            "ChannelId": "wtf_winds123",
+            "InformationId": "wtf_winds123",
+            "UserId": "wtf_winds123"
+        },
+        {
+            "ChannelId": "vickypan",
+            "InformationId": "vickypan",
+            "UserId": "vickypan"
+        },
+        {
+            "ChannelId": "tsm_dyrus",
+            "InformationId": "tsm_dyrus",
+            "UserId": "tsm_dyrus"
+        },
+        {
+            "ChannelId": "sam1268",
+            "InformationId": "sam1268",
+            "UserId": "sam1268"
+        },
+        {
+            "ChannelId": "never_loses",
+            "InformationId": "never_loses",
+            "UserId": "never_loses"
+        }
+    ]
+}

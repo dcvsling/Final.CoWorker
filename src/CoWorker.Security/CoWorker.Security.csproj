@@ -18,10 +18,15 @@
     <PackageReference Include="Microsoft.AspNetCore.Authorization" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="2.0.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\CoWorker.DependencyInjection\CoWorker.DependencyInjection.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
   </ItemGroup>
 </Project>

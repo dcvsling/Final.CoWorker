@@ -1,0 +1,64 @@
+:host>>>div {
+    font-family: "Microsoft YaHei" ! important;
+    color: white;
+}
+
+:host>>>.separate-lines>a:focus,
+:host>>>.separate-lines>a:hover,
+:host>>>.separate-lines>a.active,
+:host>>>.subTag>a:focus,
+:host>>>.subTag>a:hover,
+:host>>>.subTag>a.active {
+    color: #FFE100;
+    text-decoration: none;
+}
+
+:host>>>.subTitle {
+    position: relative;
+    display: inline;
+    float: right;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    right: 30px;
+}
+
+:host>>>.title {
+    position: relative;
+    display: inline-block;
+    background-color: black;
+    width: 100%;
+}
+
+:host>>>.titleBlock {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+:host>>>.nav-title {
+    display: inline-block;
+    width: 170px;
+    background: #FFE100;
+    color: #0098D8;
+    background: linear-gradient(-45deg, transparent 30px, #FFE100 0);
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+:host>>>.nav-title i {
+    line-height: 0;
+    font-size: 30px;
+    vertical-align: middle;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+:host>>>.mainTag span>a {
+    border-right: 1px solid white;
+    padding-right: 15px;
+    padding-left: 15px;
+}
+
+:host>>>.mainTag span:last-child>a {
+    border-right: 0px solid #FFE100;
+}
