@@ -34,11 +34,15 @@ namespace CoWorker.Models.Swagger
             Action<IApplicationBuilder> next)
         {
             next(app);
-            app.UseFileServer(new FileServerOptions() {
+            var options = new FileServerOptions()
+            {
                 EnableDefaultFiles = true,
                 RequestPath = string.Empty,
                 EnableDirectoryBrowsing = false,
-                FileProvider = env.ContentRootFileProvider});
+                FileProvider = env.WebRootFileProvider
+            };
+            options.StaticFileOptions.ServeUnknownFileTypes = true;
+            app.UseFileServer(options);
             app.UseMvc();
             app.Use(req => async ctx =>
             {

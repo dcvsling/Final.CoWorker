@@ -19,12 +19,15 @@ namespace CoWorker.Models.HostingStartupBase
         private ContainerConfiguration _config;
         private CompositionHost _host;
         private Task task;
-        public MEFProvider()
+        private readonly WebHostBuilderContext _context;
+
+        public MEFProvider(WebHostBuilderContext context)
         {
             _config = new ContainerConfiguration();
             _host = default;
             task = Task.Run(() => ImportAssembly());
             _locker = new object();
+            this._context = context;
         }
 
 

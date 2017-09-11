@@ -13,9 +13,8 @@
 
   <PropertyGroup Condition="$(IsWebHost) == 'true'">
     <OutputType>Exe</OutputType>
-    <ApplicationInsightsResourceId>/subscriptions/39b32a2e-1324-439a-94b1-055278e9bfed/resourcegroups/cowker/providers/microsoft.insights/components/cowker</ApplicationInsightsResourceId>
-    <OutputPath>..\output\</OutputPath>
     <CopyGlobalFile>true</CopyGlobalFile>
+    <RuntimeIdentifier>win10-x64</RuntimeIdentifier>
   </PropertyGroup>
 
   <ItemGroup Condition="$(IsTest) == 'true'">
