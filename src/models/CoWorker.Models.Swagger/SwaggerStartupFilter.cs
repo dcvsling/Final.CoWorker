@@ -60,8 +60,12 @@ namespace CoWorker.Models.Swagger
                         return;
                     }
                 }
-                logger.LogInformation($"{ctx.User.FindFirst(ClaimTypes.Email).Value} enter swagger ui");
-                await req(ctx);
+
+                if(ctx.User.Identity.IsAuthenticated)
+                {
+                    logger.LogInformation($"{ctx.User.FindFirst(ClaimTypes.Email).Value} enter swagger ui");
+                    await req(ctx);
+                }
             });
 
             app.UseSwaggerWithUI();
