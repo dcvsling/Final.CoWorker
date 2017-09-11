@@ -55,12 +55,6 @@
         internal static Action<IServiceCollection> LazyCopyTo(this ICollection<ServiceDescriptor> services)
             => seq => services.Each(seq.Add);
 
-        public static TObj Create<TObj>(this IObjectFactory<TObj> factory) where TObj : class
-            => factory.Create(string.Empty);
-
-        public static TObj Create<TObj>(this IObjectFactory<TObj> factory, Action<TObj> config) where TObj : class
-            => factory.Create(string.Empty).ConfigureBy(config);
-
         public static T RunIf<T>(this T services, Func<bool> predicate, Action<T> config)
         {
             (predicate() ? config : Helper.Empty<T>()).Invoke(services);

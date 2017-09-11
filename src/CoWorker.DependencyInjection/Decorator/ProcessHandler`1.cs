@@ -1,12 +1,7 @@
-﻿using CoWorker.DependencyInjection.Factory;
-using System.Security.Cryptography.X509Certificates;
-using CoWorker.DependencyInjection.Abstractions;
-using Microsoft.Extensions.DependencyInjection;
+﻿using CoWorker.DependencyInjection.Abstractions;
 using System;
-using Microsoft.Extensions.DependencyInjection.Extensions;
 using System.Linq;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 
 namespace CoWorker.DependencyInjection.Decorator
 {
