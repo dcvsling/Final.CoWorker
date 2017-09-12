@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System.Threading.Tasks;
+using System.Linq;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using CoWorker.LightMvc.Swagger;
@@ -41,31 +42,30 @@ namespace CoWorker.Models.Swagger
                 EnableDirectoryBrowsing = false,
                 FileProvider = env.WebRootFileProvider
             };
+            
             options.StaticFileOptions.ServeUnknownFileTypes = true;
             app.UseFileServer(options);
             app.UseMvc();
             app.Use(req => async ctx =>
             {
-                if (env.IsDevelopment())
+                if (env.IsProduction())
                 {
-                    if(ctx.User.Claims.Any() && !ctx.User.Identity.IsAuthenticated)
-                    {
-                        await ctx.SignInAsync(ctx.User);
-                        logger.LogInformation($"signiin {ctx.User.FindFirst(ClaimTypes.Email).Value} for swagger");
-                    }
-                    else
-                    {
-                        await ctx.ChallengeAsync("Google");
-                        logger.LogInformation("challenge for swagger");
-                        return;
-                    }
+                    ctx.Response.Redirect("/");
+                    return;
                 }
-
-                if(ctx.User.Identity.IsAuthenticated)
+                if(!ctx.User.Claims.Any())
                 {
-                    logger.LogInformation($"{ctx.User.FindFirst(ClaimTypes.Email).Value} enter swagger ui");
-                    await req(ctx);
+                    await ctx.ChallengeAsync("Google");
+                    logger.LogInformation("challenge for swagger");
+                    return;
                 }
+                if(!ctx.User.Identity.IsAuthenticated)
+                {
+                    await ctx.SignInAsync(ctx.User);
+                    logger.LogInformation($"signiin {ctx.User.FindFirst(ClaimTypes.Email).Value} for swagger");
+                }
+                logger.LogInformation($"{ctx.User.FindFirst(ClaimTypes.Email).Value} enter swagger ui");
+                await req(ctx);
             });
 
             app.UseSwaggerWithUI();

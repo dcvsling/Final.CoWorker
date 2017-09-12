@@ -3,17 +3,7 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <IsWebHost>true</IsWebHost>
-    <ApplicationInsightsAnnotationResourceId>/subscriptions/5bf9b7d5-c9a8-4c0c-b56e-818f849aaf76/resourceGroups/esport-asia/providers/microsoft.insights/components/cowker</ApplicationInsightsAnnotationResourceId>
   </PropertyGroup>
-
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <OutputPath>E:\Workspace\CoWorker\dist\output\</OutputPath>
-  </PropertyGroup>
-
-  <ItemGroup>
-    <None Remove="Properties\PublishProfiles\extreme-esport-website-backend - FTP.pubxml" />
-    <None Remove="Properties\PublishProfiles\extreme-esport-website-backend - Web Deploy.pubxml" />
-  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.1.1" />
@@ -31,8 +21,5 @@
     <DotNetCliToolReference Include="Microsoft.EntityFrameworkCore.Tools.DotNet" Version="2.0.0" />
     <DotNetCliToolReference Include="Microsoft.Extensions.SecretManager.Tools" Version="2.0.0" />
     <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="2.0.0" />
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Properties\PublishProfiles\" />
   </ItemGroup>
 </Project>

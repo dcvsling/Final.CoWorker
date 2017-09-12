@@ -2,7 +2,6 @@
 namespace EsportAsia.MainSite
 {
     using CoWorker.Builder;
-    using CoWorker.Net;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
@@ -55,8 +54,7 @@ namespace EsportAsia.MainSite
                 .UseWebRoot("wwwroot")
                 //.RunIf(
                 //    () => builder.GetSetting(WebHostDefaults.EnvironmentKey) == "Development",
-                //    srv => srv.UseContentRoot(Path.Combine(Directory.GetCurrentDirectory(), "bin", "Debug", "netcoreapp2.0"))
-                //        .UseWebRoot("wwwroot"))
+                //    srv => srv.AddKestrelHttps())
                 .UseSetting(WebHostDefaults.DetailedErrorsKey, "true")
                 .UseStartup<HostStartup>();
         }

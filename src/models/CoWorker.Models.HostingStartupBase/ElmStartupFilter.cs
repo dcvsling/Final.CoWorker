@@ -7,6 +7,7 @@ using System;
 using Microsoft.AspNetCore.Builder;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Diagnostics;
+using CoWorker.Builder;
 
 namespace CoWorker.Models.HostingStartupBase
 {
@@ -43,6 +44,7 @@ namespace CoWorker.Models.HostingStartupBase
             {
                 app.UseExceptionHandler();
             }
+            app.UseAntiforgeryMiddleware();
             app.UseRewriter();
             next(app);
             app.UseStatusCodePages();
