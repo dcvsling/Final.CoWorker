@@ -1,10 +1,6 @@
-﻿using Microsoft.Extensions.Options;
-using Microsoft.WindowsAzure.MediaServices.Client;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Linq.Expressions;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace CoWorker.Azure.Media.Repository

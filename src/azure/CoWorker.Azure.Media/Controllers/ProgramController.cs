@@ -7,7 +7,6 @@ using CoWorker.Azure.Media.Repository;
 
 namespace CoWorker.Azure.Media.Controllers
 {
-
     [Authorize]
     [Route("api/program")]
     public class ProgramController : BaseController
