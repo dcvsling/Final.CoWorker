@@ -25,7 +25,7 @@ namespace IdentitySample.Controllers
         private readonly ILogger _logger;
         private readonly IUrlHelper _url;
 
-        public AccountController(
+        public UserController(
             UserManager<User> userManager,
             SignInManager<User> signInManager,
             IEmailSender emailSender,
@@ -39,7 +39,7 @@ namespace IdentitySample.Controllers
             _emailSender = emailSender;
             _smsSender = smsSender;
             this._accessor = accessor;
-            _logger = loggerFactory.CreateLogger<AccountController>();
+            _logger = loggerFactory.CreateLogger<UserController>();
             this._url = url;
         }
 
@@ -137,7 +137,7 @@ namespace IdentitySample.Controllers
         {
             await _signInManager.SignOutAsync();
             _logger.LogInformation(4, "User logged out.");
-            return new RedirectToActionResult(nameof(HomeController.Index), "Home");
+            return new RedirectToHome();
         }
 
         //
@@ -166,7 +166,7 @@ namespace IdentitySample.Controllers
             var info = await _signInManager.GetExternalLoginInfoAsync();
             if (info == null)
             {
-                return new RedirectToActionResult(nameof(Login));
+                return new RedirectToHome();
             }
 
             // Sign in the user with this external login provider if the user already has a login.
@@ -181,7 +181,7 @@ namespace IdentitySample.Controllers
             }
             if (result.RequiresTwoFactor)
             {
-                return new RedirectToActionResult(nameof(SendCode), new { ReturnUrl = returnUrl });
+                return new RedirectToActionResult(nameof(SendCode), nameof(User),new { ReturnUrl = returnUrl });
             }
             if (result.IsLockedOut)
             {

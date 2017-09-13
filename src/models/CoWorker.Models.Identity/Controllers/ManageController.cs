@@ -82,7 +82,7 @@ namespace IdentitySamples.Controllers
                     message = ManageMessageId.RemoveLoginSuccess;
                 }
             }
-            return new new RedirectToActionResultResult(nameof(ManageLogins),nameof(ManageController), new { Message = message });
+            return new RedirectToActionResult(nameof(ManageLogins),nameof(ManageController), new { Message = message });
         }
 
         //
