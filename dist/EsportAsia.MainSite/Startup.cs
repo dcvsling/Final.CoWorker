@@ -49,6 +49,10 @@ namespace EsportAsia.MainSite
                 .ConfigureLogging(ConfigureLogging)
                 .ConfigureServices(ConfigureService)
                 .UseContentRoot(Directory.GetCurrentDirectory())
+                .UseWebRoot("wwwroot")
+                //.RunIf(
+                //    () => builder.GetSetting(WebHostDefaults.EnvironmentKey) == "Development",
+                //    srv => srv.AddKestrelHttps())
                 .UseSetting(WebHostDefaults.DetailedErrorsKey, "true")
                 .UseStartup<HostStartup>();
         }
