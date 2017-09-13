@@ -1,18 +1,16 @@
 ﻿
+using CoWorker.Builder;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.PlatformAbstractions;
+using System;
+using System.IO;
+
 namespace EsportAsia.MainSite
 {
-    using CoWorker.Builder;
-    using Microsoft.AspNetCore.Builder;
-    using Microsoft.AspNetCore.Hosting;
-    using Microsoft.Extensions.Configuration;
-    using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.AspNetCore.Rewrite;
-    using Microsoft.Extensions.PlatformAbstractions;
-    using System.IO;
-    using Microsoft.Extensions.Logging;
-    using System;
-    using CoWorker.LightMvc.Swagger;
-
     public class HostStartup : IHostingStartup
     {
         public static IWebHostBuilder Initialize(IWebHostBuilder builder)
