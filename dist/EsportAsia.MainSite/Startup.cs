@@ -6,12 +6,10 @@ namespace EsportAsia.MainSite
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.AspNetCore.Rewrite;
     using Microsoft.Extensions.PlatformAbstractions;
     using System.IO;
     using Microsoft.Extensions.Logging;
     using System;
-    using CoWorker.LightMvc.Swagger;
 
     public class HostStartup : IHostingStartup
     {
