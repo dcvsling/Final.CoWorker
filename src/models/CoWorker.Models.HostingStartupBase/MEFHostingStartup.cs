@@ -12,7 +12,8 @@ namespace CoWorker.Models.HostingStartupBase
         void IHostingStartup.Configure(IWebHostBuilder builder)
         {
             WebHostBuilderContext context = default;
-            builder.ConfigureLogging((ctx, b) =>
+            builder
+                .ConfigureLogging((ctx, b) =>
             {
                 b.AddAzureWebAppDiagnostics();
                 context = ctx;
@@ -25,7 +26,9 @@ namespace CoWorker.Models.HostingStartupBase
                     .AddAntiforgeryMiddleware()
                     .AddSingleton<IStartupFilter, ElmStartupFilter>());
             
-            new MEFProvider(context).CreateHost().GetExports<IHostingStartup>()
+            new MEFProvider(context)
+                .CreateHost()
+                .GetExports<IHostingStartup>()
                 .Each(x => x.Configure(builder));
         }
     }

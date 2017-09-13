@@ -22,7 +22,10 @@ namespace EsportAsia.MainSite
 
         public void ConfigureAppConfiguration(WebHostBuilderContext context, IConfigurationBuilder builder)
         {
-            context.Configuration = builder.Build();
+            context.Configuration = builder
+                .AddEnvironmentVariables()
+                .AddInMemoryCollection(context.Configuration.AsEnumerable())
+                .Build();
         }
 
         public void ConfigureLogging(WebHostBuilderContext context, ILoggingBuilder builder)

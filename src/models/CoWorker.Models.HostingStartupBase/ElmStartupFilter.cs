@@ -26,6 +26,7 @@ namespace CoWorker.Models.HostingStartupBase
                 app.ApplicationServices.GetService<IHostingEnvironment>(),
                 next);
             logger.LogInformation($"end {nameof(ElmStartupFilter)} application builder ");
+            app.UseStatusCodePagesWithRedirects("{0}");
         }
 
         public void Configure(

@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using Swashbuckle.AspNetCore.SwaggerUI;
+using System.Threading.Tasks;
 using System.Linq;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
@@ -8,6 +9,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
+using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Http;
 
 namespace CoWorker.Models.Swagger
 {
@@ -46,29 +49,31 @@ namespace CoWorker.Models.Swagger
             options.StaticFileOptions.ServeUnknownFileTypes = true;
             app.UseFileServer(options);
             app.UseMvc();
-            app.Use(req => async ctx =>
-            {
-                if (env.IsProduction())
-                {
-                    ctx.Response.Redirect("/");
-                    return;
-                }
-                if(!ctx.User.Claims.Any())
-                {
-                    await ctx.ChallengeAsync("Google");
-                    logger.LogInformation("challenge for swagger");
-                    return;
-                }
-                if(!ctx.User.Identity.IsAuthenticated)
-                {
-                    await ctx.SignInAsync(ctx.User);
-                    logger.LogInformation($"signiin {ctx.User.FindFirst(ClaimTypes.Email).Value} for swagger");
-                }
-                logger.LogInformation($"{ctx.User.FindFirst(ClaimTypes.Email).Value} enter swagger ui");
-                await req(ctx);
-            });
-
-            app.UseSwaggerWithUI();
+            app.Map(
+                $"/{app.ApplicationServices.GetService<IOptions<SwaggerUIOptions>>().Value.RoutePrefix}",
+                swgapp => swgapp
+                    .Use(req => async ctx =>
+                    {
+                        if (env.IsProduction())
+                        {
+                            ctx.Response.Redirect("/");
+                            return;
+                        }
+                        if (!ctx.User.Claims.Any())
+                        {
+                            await ctx.ChallengeAsync("Google");
+                            logger.LogInformation("challenge for swagger");
+                            return;
+                        }
+                        if (!ctx.User.Identity.IsAuthenticated)
+                        {
+                            await ctx.SignInAsync(ctx.User);
+                            logger.LogInformation($"signiin {ctx.User.FindFirst(ClaimTypes.Email).Value} for swagger");
+                        }
+                        logger.LogInformation($"{ctx.User.FindFirst(ClaimTypes.Email).Value} enter swagger ui");
+                        await req(ctx);
+                    })
+                    .UseSwaggerWithUI());
         }
     }
 }
