@@ -1,0 +1,237 @@
+{
+    "ART_PARENT_URL": "/art/",
+    "FN_MENU_WIDTH": {
+        "open": 240,
+        "close": 50
+    },
+    "TAG2NAME": {
+        "lol": {
+            "zh_tw": "英雄聯盟"
+        },
+        "overwatch": {
+            "zh_tw": "鬥陣特工"
+        },
+        "dota2": {
+            "zh_tw": "Dota 2"
+        },
+        "hearthstone": {
+            "zh_tw": "爐石戰記"
+        },
+        "battlegrounds": {
+            "zh_tw": "絕地求生"
+        }
+    },
+    "MENU_SETTING": {
+        "home": {
+            "fnMenu": false
+        },
+        "esport_teams": {
+            "fnMenu": false
+        },
+        "store": {
+            "fnMenu": false
+        },
+        "commodity": {
+            "isOpen": false
+        },
+        "reset_password": {
+            "disableMenu": true
+        },
+        "forget_verify": {
+            "disableMenu": true
+        },
+        "email_verify": {
+            "disableMenu": true
+        },
+        "video_frame": {
+            "disableMenu": true
+        }
+    },
+    "STORE_LEFT_MENU": [{
+            "name": "最新商品",
+            "link": "/store/list",
+            "tags": [
+                "最新商品"
+            ]
+        },
+        {
+            "name": "精選商品",
+            "link": "/store/list",
+            "tags": [
+                "精選商品"
+            ]
+        },
+        {
+            "name": "潮流特區",
+            "link": "/store/list",
+            "tags": [
+                "潮流特區"
+            ]
+        },
+        {
+            "name": "品牌專區",
+            "link": "/store/list",
+            "tags": [
+                "品牌專區"
+            ]
+        },
+        {
+            "name": "其他商品",
+            "link": "/store/list",
+            "tags": [
+                "其他商品"
+            ]
+        },
+        {
+            "name": "購物車",
+            "link": "/store/list",
+            "tags": [
+                "購物車"
+            ]
+        }
+    ],
+    "ESPORT_LEFT_MENU_GAME": [{
+        "name": "極限賽事",
+        "link": "/channel/streaming/hearthstonezhtw",
+        "icon": "/art/menu/left_icon_01.svg"
+    }],
+    "ESPORT_LEFT_MENU_OTHER": [{
+        "name": "新聞專區",
+        "link": "/esport_news/list",
+        "icon": "/art/menu/left_icon_01.svg"
+    }],
+    "ESPORT_LEFT_MENU_USER_SAVE": [
+
+    ],
+    "SM_ESPORT_LEFT_MENU_GAME": [{
+            "name": "極限賽事",
+            "link": "/channel/streaming/hearthstonezhtw",
+            "icon": "/art/menu/left_icon_01.svg"
+        },
+        {
+            "name": "新聞專區",
+            "link": "/esport_news/list",
+            "icon": "/art/menu/left_icon_01.svg"
+        },
+        {
+            "name": "職業專區",
+            "link": "/stream_show/prefessional",
+            "icon": "/art/menu/left_icon_01.svg"
+        },
+        {
+            "name": "素人明星",
+            "link": "/stream_show/ordinary",
+            "icon": "/art/menu/left_icon_01.svg"
+        },
+        {
+            "name": "極限樂購",
+            "link": "/store/list",
+            "queryParams": { "tag": 0, "sort": 0 },
+            "icon": "/art/menu/left_icon_01.svg"
+        }
+
+    ],
+    "SM_ESPORT_RIGHT_MENU_GAME": {
+        "name": "",
+        "link": null,
+        "icon": "/art/menu/ic_person_white_24px.svg",
+        "items": [{
+            "name": "會員中心",
+            "link": null
+        }]
+    },
+    "HEAD_MENU": [{
+            "name": "線上聯賽",
+            "link": null,
+            "items": [{
+                    "name": "極限賽事",
+                    "link": "/channel/streaming/hearthstonezhtw",
+                    "icon": "/art/menu/left_icon_01.svg"
+                },
+                {
+                    "name": "新聞專區",
+                    "link": "/esport_news/list",
+                    "icon": "/art/menu/left_icon_01.svg"
+                }
+            ]
+        },
+        {
+            "name": "實況Show",
+            "link": null,
+            "items": [{
+                    "name": "職業專區",
+                    "link": "/stream_show/prefessional"
+                },
+                {
+                    "name": "素人明星",
+                    "link": "/stream_show/ordinary"
+                }
+            ]
+        },
+        {
+            "name": "極限樂購",
+            "link": "/store/list",
+            "queryParams": { "tag": 0, "sort": 0 }
+        },
+        {
+            "name": "我的TV",
+            "link": null,
+            "items": [{
+                "name": "會員中心",
+                "link": null
+            }]
+        }
+    ],
+    "SOCIAL_LINK": [{
+            "name": "facebook",
+            "link": null,
+            "icon": "/art/social/community_icon_01.svg"
+        },
+        {
+            "name": "youtube",
+            "link": null,
+            "icon": "/art/social/community_icon_02.svg"
+        },
+        {
+            "name": "twitch",
+            "link": null,
+            "icon": "/art/social/community_icon_03.svg"
+        },
+        {
+            "name": "line",
+            "link": null,
+            "icon": "/art/social/community_icon_04.svg"
+        },
+        {
+            "name": "instagram",
+            "link": null,
+            "icon": "/art/social/community_icon_05.svg"
+        },
+        {
+            "name": "weibo",
+            "link": null,
+            "icon": "/art/social/community_icon_06.svg"
+        },
+        {
+            "name": "wechat",
+            "link": null,
+            "icon": "/art/social/community_icon_07.svg"
+        }
+    ],
+    "SOCIAL_ICON": {
+        "facebook": "/art/social/community_icon_01.svg",
+        "youtube": "/art/social/community_icon_02.svg",
+        "googlePlus": "/art/social/openID_icon_02.svg",
+        "twitc": "/art/social/community_icon_03.svg",
+        "line": "/art/social/community_icon_04.svg",
+        "instagram": "/art/social/community_icon_05.svg",
+        "weibo": "/art/social/community_icon_06.svg",
+        "wechat": "/art/social/community_icon_07.svg",
+        "meipai": "/art/social/community_icon_08.svg"
+    },
+    "OPENID_ICON": {
+        "facebook": "/art/social/openID_icon_01.svg",
+        "googlePlus": "/art/social/openID_icon_02.svg"
+    },
+    "RECAPTCHA_SITEKEY": "6Lf0yigUAAAAAKkgJM5xlN48a1Z4EwPNhHdIR16s"
+}

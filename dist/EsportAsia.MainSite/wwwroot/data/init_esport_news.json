@@ -1,0 +1,63 @@
+{
+    "title": {
+        "title": "新聞專區",
+        "material_icon": "<i class='material-icons'>&#xE338;</i>"
+    },
+    "dataEsport_news": [{
+            "query_method": "top",
+            "active": "active",
+            "name": "最新消息",
+            "link": "/esport_news/list",
+            "queryParams": { "tag": 0 },
+            "query_url": "/data/news/list/news.list0.json"
+        },
+        {
+            "query_method": "season",
+            "active": "",
+            "name": "電競專區",
+            "link": "/esport_news/list",
+            "queryParams": { "tag": 1 },
+            "query_url": "/data/news/list/news.list1.json"
+        },
+        {
+            "query_method": "month",
+            "active": "",
+            "name": "遊戲相關",
+            "link": "/esport_news/list",
+            "queryParams": { "tag": 2 },
+            "query_url": "/data/news/list/news.list2.json"
+        },
+        {
+            "query_method": "week",
+            "active": "",
+            "name": "硬體週邊",
+            "link": "/esport_news/list",
+            "queryParams": { "tag": 3 },
+            "query_url": "/data/news/list/news.list3.json"
+        },
+        {
+            "query_method": "week",
+            "active": "",
+            "name": "主題專欄",
+            "link": "/esport_news/list",
+            "queryParams": { "tag": 4 },
+            "query_url": "/data/news/list/news.list4.json"
+        },
+        {
+            "query_method": "week",
+            "active": "",
+            "name": "藝術創作",
+            "link": "/esport_news/list",
+            "queryParams": { "tag": 5 },
+            "query_url": "/data/news/list/news.list5.json"
+        },
+        {
+            "query_method": "week",
+            "active": "",
+            "name": "精彩時刻",
+            "link": "/esport_news/list",
+            "queryParams": { "tag": 6 },
+            "query_url": "/data/news/list/news.list6.json"
+        }
+    ]
+}

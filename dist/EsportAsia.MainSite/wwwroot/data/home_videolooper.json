@@ -1,0 +1,68 @@
+{
+    "list": [{
+            "Information": {
+                "Title": "極限電競官方直播",
+                "Description": "極限電競官方直播",
+                "Content": "",
+                "Image": "/art/home/videolooper_background.jpg",
+                "Url": "Extreme"
+            },
+            "Source": {
+                "src": "//amssamples.streaming.mediaservices.windows.net/91492735-c523-432b-ba01-faba6c2206a2/AzureMediaServicesPromo.ism/manifest",
+                "type": "application/vnd.ms-sstr+xml"
+            }
+        },
+        {
+            "Information": {
+                "Title": "極限電競官方直播",
+                "Description": "極限電競官方直播",
+                "Content": "",
+                "Image": "/art/home/videolooper_background.jpg",
+                "Url": "Extreme"
+            },
+            "Source": {
+                "src": "//b028.wpc.azureedge.net/80B028/Samples/0e8848ca-1db7-41a3-8867-fe911144c045/d34d8807-5597-47a1-8408-52ec5fc99027.ism/manifest",
+                "type": "application/vnd.ms-sstr+xml"
+            }
+        },
+        {
+            "Information": {
+                "Title": "極限電競官方直播",
+                "Description": "極限電競官方直播",
+                "Content": "",
+                "Image": "/art/home/videolooper_background.jpg",
+                "Url": "Extreme"
+            },
+            "Source": {
+                "src": "//amssamples.streaming.mediaservices.windows.net/91492735-c523-432b-ba01-faba6c2206a2/AzureMediaServicesPromo.ism/manifest",
+                "type": "application/vnd.ms-sstr+xml"
+            }
+        },
+        {
+            "Information": {
+                "Title": "極限電競官方直播",
+                "Description": "極限電競官方直播",
+                "Content": "",
+                "Image": "/art/home/videolooper_background.jpg",
+                "Url": "Extreme"
+            },
+            "Source": {
+                "src": "//b028.wpc.azureedge.net/80B028/Samples/0e8848ca-1db7-41a3-8867-fe911144c045/d34d8807-5597-47a1-8408-52ec5fc99027.ism/manifest",
+                "type": "application/vnd.ms-sstr+xml"
+            }
+        },
+        {
+            "Information": {
+                "Title": "極限電競官方直播",
+                "Description": "極限電競官方直播",
+                "Content": "",
+                "Image": "/art/home/videolooper_background.jpg",
+                "Url": "Extreme"
+            },
+            "Source": {
+                "src": "//amssamples.streaming.mediaservices.windows.net/91492735-c523-432b-ba01-faba6c2206a2/AzureMediaServicesPromo.ism/manifest",
+                "type": "application/vnd.ms-sstr+xml"
+            }
+        }
+    ]
+}

@@ -1,0 +1,32 @@
+   {
+       "VideoId": "5000",
+       "Information": {
+           "InformationId": "11111",
+           "Title": "極限電競官方直播VOD",
+           "Description": "極限電競官方LOL大賽VOD",
+           "Content": "",
+           "Image": "/art/home/videolooper_background.jpg",
+           "Url": "20"
+       },
+       "Source": {
+           "src": "//b028.wpc.azureedge.net/80B028/Samples/0e8848ca-1db7-41a3-8867-fe911144c045/d34d8807-5597-47a1-8408-52ec5fc99027.ism/manifest",
+           "type": "application/vnd.ms-sstr+xml"
+       },
+       "ManTime": {
+           "ManTimeId": "aaa",
+           "Key": "",
+           "Value": {
+               "channel_online_viewers": 65,
+               "channel_total_viewers": 55454,
+               "favorites_counter": 5,
+               "is_user_favorited": true,
+               "is_user_subscribed": true,
+               "is_user_donated": true
+           }
+       },
+       "Tag": {
+           "TagId": "a31",
+           "State": "",
+           "Value": "lol"
+       }
+   }
