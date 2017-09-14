@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System.Collections;
+using Newtonsoft.Json;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -8,6 +9,7 @@ using Microsoft.AspNetCore.Builder;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Diagnostics;
 using CoWorker.Builder;
+using System.Collections.Generic;
 
 namespace CoWorker.Models.HostingStartupBase
 {
@@ -26,7 +28,6 @@ namespace CoWorker.Models.HostingStartupBase
                 app.ApplicationServices.GetService<IHostingEnvironment>(),
                 next);
             logger.LogInformation($"end {nameof(ElmStartupFilter)} application builder ");
-            app.UseStatusCodePagesWithRedirects("{0}");
         }
 
         public void Configure(
@@ -63,5 +64,20 @@ namespace CoWorker.Models.HostingStartupBase
                 }, new JsonSerializerSettings().Initialize());
             return context.Response.WriteAsync(msg);
         }
+    }
+
+    public class MiddlewareBuilder
+    {
+        public MiddlewareBuilder(IEnumerable<IStartupFilter> filters)
+        {
+
+        }
+
+    }
+
+    public interface INamedStartupFilter : IStartupFilter
+    {
+        string Name { get; }
+
     }
 }
