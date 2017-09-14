@@ -2,6 +2,7 @@
 using CoWorker.Builder;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -36,7 +37,9 @@ namespace EsportAsia.MainSite
         public void ConfigureService(WebHostBuilderContext context, IServiceCollection services)
         {
             if (context.HostingEnvironment.IsDevelopment())
-                services.AddKestrelHttps();
+                services.AddKestrelHttps()
+                    .ConfigureApplicationCookie(o => o.Cookie.SecurePolicy = CookieSecurePolicy.Always)
+                    .ConfigureExternalCookie(o => o.Cookie.SecurePolicy = CookieSecurePolicy.Always);
             Helper.InitDefaultJsonSetting();
         }
 
