@@ -38,13 +38,14 @@ namespace EsportAsia.MainSite
         {
             if (context.HostingEnvironment.IsDevelopment())
                 services.AddKestrelHttps()
-                    .ConfigureApplicationCookie(o => o.Cookie.SecurePolicy = CookieSecurePolicy.Always)
-                    .ConfigureExternalCookie(o => o.Cookie.SecurePolicy = CookieSecurePolicy.Always);
+                    .ConfigureApplicationCookie(o => o.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest)
+                    .ConfigureExternalCookie(o => o.Cookie.SecurePolicy = CookieSecurePolicy.SameAsRequest);
             Helper.InitDefaultJsonSetting();
         }
 
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
+            
         }
 
         void IHostingStartup.Configure(IWebHostBuilder builder)
@@ -56,9 +57,6 @@ namespace EsportAsia.MainSite
                 .ConfigureServices(ConfigureService)
                 .UseContentRoot(Directory.GetCurrentDirectory())
                 .UseWebRoot("wwwroot")
-                //.RunIf(
-                //    () => builder.GetSetting(WebHostDefaults.EnvironmentKey) == "Development",
-                //    srv => srv.AddKestrelHttps())
                 .UseSetting(WebHostDefaults.DetailedErrorsKey, "true")
                 .UseStartup<HostStartup>();
         }
