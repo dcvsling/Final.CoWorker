@@ -1,6 +1,4 @@
 ﻿using Microsoft.Extensions.Options;
-using System.Collections;
-using System.Linq;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authorization;
 namespace CoWorker.Models.Blog
@@ -11,7 +9,6 @@ namespace CoWorker.Models.Blog
     using CoWorker.Models.Models.Blog.Query;
     using Microsoft.AspNetCore.Authentication.Cookies;
     using CoWorker.Models.Blogs.Migrations;
-    using System.Collections.Generic;
 
     [Controller]
     [Authorize(AuthenticationSchemes = CookieAuthenticationDefaults.AuthenticationScheme)]

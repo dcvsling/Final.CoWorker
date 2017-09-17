@@ -15,12 +15,5 @@
                 .AddSingleton<IConfigureOptions<PostRelated>,PostRelatedConfigureOptions>()
                 .AddScoped<IBlogFactory, BlogFactory>()
                 .AddScoped<BlogController>();
-
-        //public static IServiceCollection AddBlog<TContext>(this IServiceCollection services,
-        //    Action<IServiceProvider, DbContextOptionsBuilder<TContext>> config)
-        //    where TContext : BlogDbContext
-        //    => services.AddBlog<TContext>()
-        //        .AddSingleton<IConfigureOptions<DbContextOptionsBuilder<TContext>>>(
-        //            p => new ConfigureOptions<DbContextOptionsBuilder<TContext>>(o => config(p, o)));
     }
 }
