@@ -15,10 +15,9 @@ namespace EsportAsia.MainSite
 {
     public static class Program
     {
-        async public static Task Main(string[] args)
+        public static void Main(string[] args)
         {
-            await BuildWebHost(args).StartAsync();
-            Console.Read();
+            BuildWebHost(args).Run();
         }
 
         public static IWebHost BuildWebHost(string[] args)
