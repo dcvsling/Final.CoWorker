@@ -49,6 +49,7 @@ namespace CoWorker.Models.Security.Authentication
                     }));
 
         [HttpPost("{scheme}")]
+        [HttpGet("{scheme}")]
         async public Task Post([FromRoute] string scheme)
         {
             var context = _accessor.HttpContext;
@@ -58,7 +59,12 @@ namespace CoWorker.Models.Security.Authentication
                 return;
             }
             if (context.User.Identity.IsAuthenticated)
-                await Logout();
+            {
+                context.Response.Redirect("/");
+                return;
+            }
+            if (context.User.Claims.Any())
+                await Login();
             var schemes = await schemas.GetAllSchemesAsync();
             var currentScheme = schemes.FirstOrDefault(x => x.Name.Equals(scheme, StringComparison.OrdinalIgnoreCase))
                 ?.Name

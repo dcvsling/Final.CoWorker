@@ -4,7 +4,7 @@
 
 	public static class LinqExtensions {
         
-        public static IEnumerable<T> Expect<T>(this IEnumerable<T> seq)
+        public static IEnumerable<T> Except<T>(this IEnumerable<T> seq)
             => seq.Where(x => x != null);
 
         public static void Each<T>(this IEnumerable<T> seq, Action<T> action) => seq.ToList().ForEach(action);

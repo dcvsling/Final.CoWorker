@@ -23,8 +23,8 @@ namespace CoWorker.Models.Security.Authentication
         public Task<ClaimsPrincipal> TransformAsync(ClaimsPrincipal user)
         {
             var claims = _providers.AsEnumerable()
-                .SelectMany(x => x.Create(user));;
-            return Task.FromResult(new ClaimsPrincipal(new ClaimsIdentity(claims)));
+                .SelectMany(x => x.Create(user));
+            return Task.FromResult(new ClaimsPrincipal(new ClaimsIdentity(user.Identity,claims.Except(user.Claims))));
         }
     }
 }

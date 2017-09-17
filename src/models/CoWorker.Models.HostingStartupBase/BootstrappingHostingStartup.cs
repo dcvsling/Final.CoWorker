@@ -56,6 +56,7 @@ namespace CoWorker.Models.HostingStartupBase
             services.AddOptions()
                     .AddConfiguration(context.Configuration)
                     .AddElm()
+                    .AddCors()
                     .AddHttpsRedirect()
                     .AddAntiforgeryMiddleware()
                     .AddSingleton<IStartupFilter, StartupFilterBase>();

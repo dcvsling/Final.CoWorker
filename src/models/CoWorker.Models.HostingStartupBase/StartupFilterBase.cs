@@ -1,6 +1,4 @@
-﻿using System.Linq;
-using System.Collections;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -10,8 +8,8 @@ using Microsoft.AspNetCore.Builder;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Diagnostics;
 using CoWorker.Builder;
-using System.Collections.Generic;
-using Microsoft.Extensions.Primitives;
+using Microsoft.AspNetCore.Cors;
+
 
 namespace CoWorker.Models.HostingStartupBase
 {
@@ -49,7 +47,9 @@ namespace CoWorker.Models.HostingStartupBase
             {
                 app.UseExceptionHandler();
             }
+            
             app.UseAntiforgeryMiddleware();
+            app.UseCors(x => x.WithOrigins("facebook","google", "esportasia","localhost"));
             app.UseRewriter();
             next(app);
             app.UseStatusCodePages();
