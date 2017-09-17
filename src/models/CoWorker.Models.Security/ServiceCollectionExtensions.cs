@@ -36,13 +36,12 @@ namespace CoWorker.Builder
                     })
                     .AddCookie(o =>
                     {
-                        o.LoginPath = "/auth/login";
-                        o.LogoutPath = "/auth/logout";
+                        //o.LoginPath = "/auth/login";
+                        //o.LogoutPath = "/auth/logout";
                         o.ExpireTimeSpan = new TimeSpan(1, 0, 0);
                         o.Events.OnRedirectToReturnUrl =
                             ctx => Task.Run(() => ctx.Response.Redirect(
                                 HttpUtility.HtmlDecode(ctx.Request.Query[ctx.Options.ReturnUrlParameter])));
-
                     });
 
         public static IServiceCollection AddClaimBaseAuthorize(this IServiceCollection services)

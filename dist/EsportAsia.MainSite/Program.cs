@@ -1,23 +1,30 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.ApplicationInsights.HostingStartup;
+using Microsoft.AspNetCore.Identity;
 using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore;
 using CoWorker.Models.HostingStartupBase;
+using Microsoft.Extensions.PlatformAbstractions;
+using System.Threading.Tasks;
 
-[assembly: HostingStartup(typeof(MEFHostingStartup))]
+[assembly: HostingStartup(typeof(ApplicationInsightsHostingStartup))]
+[assembly: HostingStartup(typeof(BootstrappingHostingStartup))]
 
 namespace EsportAsia.MainSite
 {
     public static class Program
     {
-        public static void Main(string[] args)
+        async public static Task Main(string[] args)
         {
-            BuildWebHost(args).Run();
+            await BuildWebHost(args).StartAsync();
+            Console.Read();
         }
 
         public static IWebHost BuildWebHost(string[] args)
-            => HostStartup.Initialize(WebHost.CreateDefaultBuilder(args)).Build();
+            => WebHost.CreateDefaultBuilder(args)
+                .UseSetting(WebHostDefaults.ApplicationKey, PlatformServices.Default.Application.ApplicationName)
+                .Build();
 
     }
 }
