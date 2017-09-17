@@ -15,6 +15,7 @@ namespace IdentitySamples.Controllers
     [Authorize]
     public class ManageController
     {
+        public const string MANAGE = "Manage";
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly IEmailSender _emailSender;
@@ -82,7 +83,7 @@ namespace IdentitySamples.Controllers
                     message = ManageMessageId.RemoveLoginSuccess;
                 }
             }
-            return new RedirectToActionResult(nameof(ManageLogins),nameof(ManageController), new { Message = message });
+            return new RedirectToActionResult(nameof(ManageLogins), MANAGE, new { Message = message });
         }
 
         //
@@ -106,7 +107,7 @@ namespace IdentitySamples.Controllers
             var user = await GetCurrentUserAsync();
             var code = await _userManager.GenerateChangePhoneNumberTokenAsync(user, model.PhoneNumber);
             await _smsSender.SendSmsAsync(model.PhoneNumber, "Your security code is: " + code);
-            return new RedirectToActionResult(nameof(VerifyPhoneNumber),nameof(ManageController), new { PhoneNumber = model.PhoneNumber });
+            return new RedirectToActionResult(nameof(VerifyPhoneNumber), MANAGE, new { PhoneNumber = model.PhoneNumber });
         }
 
         //
@@ -121,7 +122,7 @@ namespace IdentitySamples.Controllers
                 await _userManager.ResetAuthenticatorKeyAsync(user);
                 _logger.LogInformation(1, "User reset authenticator key.");
             }
-            return new RedirectToActionResult(nameof(Index), "Manage", Empty);
+            return new RedirectToActionResult(nameof(Index), MANAGE, Empty);
         }
 
         //
@@ -153,7 +154,7 @@ namespace IdentitySamples.Controllers
                 await _signInManager.SignInAsync(user, isPersistent: false);
                 _logger.LogInformation(1, "User enabled two-factor authentication.");
             }
-            return new RedirectToActionResult(nameof(Index), "Manage", Empty);
+            return new RedirectToActionResult(nameof(Index), MANAGE, Empty);
         }
 
         //
@@ -169,7 +170,7 @@ namespace IdentitySamples.Controllers
                 await _signInManager.SignInAsync(user, isPersistent: false);
                 _logger.LogInformation(2, "User disabled two-factor authentication.");
             }
-            return new RedirectToActionResult(nameof(Index), "Manage",Empty);
+            return new RedirectToActionResult(nameof(Index), MANAGE",Empty);
         }
 
         //
@@ -199,12 +200,12 @@ namespace IdentitySamples.Controllers
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, isPersistent: false);
-                    return new RedirectToActionResult(nameof(Index), new { Message = ManageMessageId.AddPhoneSuccess });
+                    return new OkObjectResult(nameof(Index), new { Message = ManageMessageId.AddPhoneSuccess });
                 }
             }
             // If we got this far, something failed, redisplay the form
             _accessor.ActionContext.ModelState.AddModelError(string.Empty, "Failed to verify phone number");
-            return new OkObjectResult(model);
+            return new BadRequestObjectResult(model);
         }
 
         //
@@ -220,7 +221,7 @@ namespace IdentitySamples.Controllers
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, isPersistent: false);
-                    return new RedirectToActionResult(nameof(Index), new { Message = ManageMessageId.RemovePhoneSuccess });
+                    return new RedirectToActionResult(nameof(Index),nameof(Manage), new { Message = ManageMessageId.RemovePhoneSuccess });
                 }
             }
             return new RedirectToActionResult(nameof(Index), new { Message = ManageMessageId.Error });
