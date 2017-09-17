@@ -26,7 +26,14 @@
                     action(x);
                     return x;
                 });
-        
+
+        public static IEnumerable<T> Do<T>(this IEnumerable<T> seq, Func<T,object> action)
+            => seq.Select(
+                x => {
+                    action(x);
+                    return x;
+                });
+
         public static IEnumerable<int> MarkPoint<T>(
             this IEnumerable<T> ts, 
             Func<T, int, bool> predicate,
@@ -60,5 +67,14 @@
                      action(sd, next);
                      return sd;
                  });
+
+        public static IEnumerable<TNext> AsEnumerable<T,TNext>(this T t,Func<T,TNext> selector)
+        {
+            var current = selector(t);
+            while(current != null)
+            {
+                yield return current;
+            }
+        }
     }
 }

@@ -38,18 +38,10 @@ namespace CoWorker.Models.Swagger
             Action<IApplicationBuilder> next)
         {
             next(app);
-            var options = new FileServerOptions()
-            {
-                EnableDefaultFiles = true,
-                RequestPath = string.Empty,
-                EnableDirectoryBrowsing = false,
-                FileProvider = env.WebRootFileProvider
-            };
-            
-            options.StaticFileOptions.ServeUnknownFileTypes = true;
-            app.UseFileServer(options);
-            app.UseMvc();
-            app.Use(req => async ctx =>
+         
+            app.UseFileServer(app.ApplicationServices.GetService<IOptions<FileServerOptions>>().Value)
+                .UseMvc()
+                .Use(req => async ctx =>
                 {
                     if (env.IsProduction())
                     {

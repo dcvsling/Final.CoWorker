@@ -16,28 +16,29 @@ using Microsoft.Extensions.Primitives;
 namespace CoWorker.Models.HostingStartupBase
 {
 
-    public class ElmStartupFilter : IStartupFilter
+    public class StartupFilterBase : IStartupFilter
     {
         Action<IApplicationBuilder> IStartupFilter.Configure(Action<IApplicationBuilder> next)
             => app => Configure(app,next);
 
         public void Configure(IApplicationBuilder app, Action<IApplicationBuilder> next)
         {
-            var logger = app.ApplicationServices.GetService<ILogger<ElmStartupFilter>>();
-            logger.LogInformation($"begin {nameof(ElmStartupFilter)} application builder ");
+            var logger = app.ApplicationServices.GetService<ILogger<StartupFilterBase>>();
+            logger.LogInformation($"begin {nameof(StartupFilterBase)} application builder ");
             Configure(app,
                 logger,
                 app.ApplicationServices.GetService<IHostingEnvironment>(),
                 next);
-            logger.LogInformation($"end {nameof(ElmStartupFilter)} application builder ");
+            logger.LogInformation($"end {nameof(StartupFilterBase)} application builder ");
         }
 
         public void Configure(
             IApplicationBuilder app,
-            ILogger<ElmStartupFilter> logger,
+            ILogger<StartupFilterBase> logger,
             IHostingEnvironment env,
             Action<IApplicationBuilder> next)
         {
+            
             app.UseElmCapture();
             if (env.IsDevelopment())
             {

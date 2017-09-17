@@ -10,11 +10,9 @@ namespace CoWorker.Builder
 
     public static class ServiceCollectionExtensions
     {
-        public static IServiceCollection AddNetTools(this IServiceCollection services)
+        public static IServiceCollection AddHttpsRedirect(this IServiceCollection services)
         {
             ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
-            services.AddAntiforgeryMiddleware()
-                  .TryAddTransient<FileUploadHandler>();
             services.Configure<RewriteOptions>(o => o.AddRedirectToHttpsPermanent());
             return services;
         }
