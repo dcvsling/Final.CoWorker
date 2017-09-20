@@ -2,8 +2,9 @@
 
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Antiforgery;
-namespace CoWorker.Net.Antiforgery
+namespace CoWorker.Builder
 {
+    using CoWorker.Net.Antiforgery;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.Extensions.DependencyInjection.Extensions;
     using System;

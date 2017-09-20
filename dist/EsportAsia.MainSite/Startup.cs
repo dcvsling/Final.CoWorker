@@ -1,19 +1,16 @@
 ﻿
+using CoWorker.Builder;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.PlatformAbstractions;
+using System;
+using System.IO;
+
 namespace EsportAsia.MainSite
 {
-    using CoWorker.Builder;
-    using CoWorker.Net;
-    using Microsoft.AspNetCore.Builder;
-    using Microsoft.AspNetCore.Hosting;
-    using Microsoft.Extensions.Configuration;
-    using Microsoft.Extensions.DependencyInjection;
-    using Microsoft.AspNetCore.Rewrite;
-    using Microsoft.Extensions.PlatformAbstractions;
-    using System.IO;
-    using Microsoft.Extensions.Logging;
-    using System;
-    using CoWorker.LightMvc.Swagger;
-
     public class HostStartup : IHostingStartup
     {
         public static IWebHostBuilder Initialize(IWebHostBuilder builder)
@@ -25,7 +22,10 @@ namespace EsportAsia.MainSite
 
         public void ConfigureAppConfiguration(WebHostBuilderContext context, IConfigurationBuilder builder)
         {
-            context.Configuration = builder.Build();
+            context.Configuration = builder
+                .AddEnvironmentVariables()
+                .AddInMemoryCollection(context.Configuration.AsEnumerable())
+                .Build();
         }
 
         public void ConfigureLogging(WebHostBuilderContext context, ILoggingBuilder builder)
@@ -55,8 +55,7 @@ namespace EsportAsia.MainSite
                 .UseWebRoot("wwwroot")
                 //.RunIf(
                 //    () => builder.GetSetting(WebHostDefaults.EnvironmentKey) == "Development",
-                //    srv => srv.UseContentRoot(Path.Combine(Directory.GetCurrentDirectory(), "bin", "Debug", "netcoreapp2.0"))
-                //        .UseWebRoot("wwwroot"))
+                //    srv => srv.AddKestrelHttps())
                 .UseSetting(WebHostDefaults.DetailedErrorsKey, "true")
                 .UseStartup<HostStartup>();
         }

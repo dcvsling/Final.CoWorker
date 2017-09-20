@@ -1,4 +1,6 @@
-﻿using System.Linq;
+﻿using Swashbuckle.AspNetCore.SwaggerUI;
+using System.Threading.Tasks;
+using System.Linq;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Authentication;
 using CoWorker.LightMvc.Swagger;
@@ -7,6 +9,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System;
+using Microsoft.Extensions.Options;
+using Microsoft.AspNetCore.Http;
 
 namespace CoWorker.Models.Swagger
 {
@@ -34,41 +38,31 @@ namespace CoWorker.Models.Swagger
             Action<IApplicationBuilder> next)
         {
             next(app);
-            var options = new FileServerOptions()
-            {
-                EnableDefaultFiles = true,
-                RequestPath = string.Empty,
-                EnableDirectoryBrowsing = false,
-                FileProvider = env.WebRootFileProvider
-            };
-            options.StaticFileOptions.ServeUnknownFileTypes = true;
-            app.UseFileServer(options);
-            app.UseMvc();
-            app.Use(req => async ctx =>
-            {
-                if (env.IsDevelopment())
+         
+            app.UseFileServer(app.ApplicationServices.GetService<IOptions<FileServerOptions>>().Value)
+                .UseMvc()
+                .Use(req => async ctx =>
                 {
-                    if(ctx.User.Claims.Any() && !ctx.User.Identity.IsAuthenticated)
+                    if (env.IsProduction())
                     {
-                        await ctx.SignInAsync(ctx.User);
-                        logger.LogInformation($"signiin {ctx.User.FindFirst(ClaimTypes.Email).Value} for swagger");
+                        ctx.Response.Redirect("/");
+                        return;
                     }
-                    else
+                    if (!ctx.User.Claims.Any())
                     {
                         await ctx.ChallengeAsync("Google");
                         logger.LogInformation("challenge for swagger");
                         return;
                     }
-                }
-
-                if(ctx.User.Identity.IsAuthenticated)
-                {
+                    if (!ctx.User.Identity.IsAuthenticated)
+                    {
+                        await ctx.SignInAsync(ctx.User);
+                        logger.LogInformation($"signiin {ctx.User.FindFirst(ClaimTypes.Email).Value} for swagger");
+                    }
                     logger.LogInformation($"{ctx.User.FindFirst(ClaimTypes.Email).Value} enter swagger ui");
                     await req(ctx);
-                }
-            });
-
-            app.UseSwaggerWithUI();
+                })
+                .UseSwaggerWithUI();
         }
     }
 }

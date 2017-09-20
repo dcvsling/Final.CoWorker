@@ -1,4 +1,6 @@
-﻿using Newtonsoft.Json;
+﻿using System.Linq;
+using System.Collections;
+using Newtonsoft.Json;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -7,6 +9,9 @@ using System;
 using Microsoft.AspNetCore.Builder;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Diagnostics;
+using CoWorker.Builder;
+using System.Collections.Generic;
+using Microsoft.Extensions.Primitives;
 
 namespace CoWorker.Models.HostingStartupBase
 {
@@ -43,6 +48,7 @@ namespace CoWorker.Models.HostingStartupBase
             {
                 app.UseExceptionHandler();
             }
+            app.UseAntiforgeryMiddleware();
             app.UseRewriter();
             next(app);
             app.UseStatusCodePages();

@@ -57,6 +57,8 @@ namespace CoWorker.Models.Security.Authentication
                 await context.ChallengeAsync();
                 return;
             }
+            if (context.User.Identity.IsAuthenticated)
+                await Logout();
             var schemes = await schemas.GetAllSchemesAsync();
             var currentScheme = schemes.FirstOrDefault(x => x.Name.Equals(scheme, StringComparison.OrdinalIgnoreCase))
                 ?.Name

@@ -1,7 +1,9 @@
-﻿using CoWorker.LightMvc.Swagger;
+﻿using Microsoft.AspNetCore.Builder;
+using CoWorker.LightMvc.Swagger;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
+using Microsoft.Extensions.Options;
 
 namespace CoWorker.Models.Swagger
 {
@@ -21,7 +23,15 @@ namespace CoWorker.Models.Swagger
                     })
                     .Services
                 .AddSwagger()
-                .AddSingleton<IStartupFilter,SwaggerStartupFilter>());
+                .AddSingleton<IStartupFilter,SwaggerStartupFilter>()
+                .AddSingleton<IConfigureOptions<FileServerOptions>>(p => new ConfigureOptions<FileServerOptions>(o =>
+                {
+                    o.EnableDefaultFiles = true;
+                    o.RequestPath = string.Empty;
+                    o.EnableDirectoryBrowsing = false;
+                    o.FileProvider = p.GetService<IHostingEnvironment>().WebRootFileProvider;
+                    o.StaticFileOptions.ServeUnknownFileTypes = true;
+                })));
     }
 
 }
