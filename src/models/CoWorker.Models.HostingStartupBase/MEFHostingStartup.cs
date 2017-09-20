@@ -1,6 +1,4 @@
 ﻿using Microsoft.Extensions.Logging;
-using System.Security.Cryptography.X509Certificates;
-using Microsoft.Extensions.DependencyInjection;
 
 using System.Linq;
 using Microsoft.AspNetCore.Hosting;
@@ -16,7 +14,13 @@ namespace CoWorker.Models.HostingStartupBase
         void IHostingStartup.Configure(IWebHostBuilder builder)
         {
             WebHostBuilderContext context = default;
-            builder.ConfigureLogging((ctx,b) => {
+            builder
+                .ConfigureAppConfiguration(
+                    (ctx,b) => b.AddAzureKeyVault(
+                        $"https://esport-key.vault.azure.net/",
+                        ctx.Configuration.GetSection("keyvault:clientid").Get<string>(),
+                        ctx.Configuration.GetSection("keyvault:clientsecret").Get<string>()))
+                .ConfigureLogging((ctx,b) => {
                 b.AddAzureWebAppDiagnostics();
                 context = ctx;
                 })

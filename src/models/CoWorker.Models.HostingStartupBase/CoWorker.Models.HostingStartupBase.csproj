@@ -11,6 +11,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.Elm" Version="0.2.2" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="2.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.AzureKeyVault" Version="2.0.0" />
     <PackageReference Include="Microsoft.Extensions.DependencyModel" Version="2.0.0" />
     <PackageReference Include="Microsoft.Extensions.DiagnosticAdapter" Version="2.0.0" />
     <PackageReference Include="Microsoft.Extensions.Logging.AzureAppServices" Version="2.0.0" />
