@@ -5,8 +5,8 @@ namespace CoWorker.Abstractions.Values
 
     public struct ListItem
     {
-        string Text { get; set; }
-        string Value { get; set; }
-        bool IsSelected { get; set; }
+        public string Text { get; set; }
+        public string Value { get; set; }
+        public bool IsSelected { get; set; }
     }
 }

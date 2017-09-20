@@ -1,21 +1,24 @@
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.DataProtection;
+using System;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using CoWorker.Models.Identity;
-using CoWorker.Models.Identity.Accounts;
-
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using CoWorker.Models.Identity.Accounts;
 using CoWorker.Abstractions.Values;
 
 namespace IdentitySample.Controllers
 {
     [Controller]
     [Authorize]
-    public class UserController
+    [Route("usr")]
+    public class AccountController //DevSkim: ignore DS184626
     {
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
@@ -24,6 +27,7 @@ namespace IdentitySample.Controllers
         private readonly IActionContextAccessor _accessor;
         private readonly ILogger _logger;
         private readonly IUrlHelper _url;
+        private readonly IDataProtector _protector;
 
         public AccountController(
             UserManager<User> userManager,
@@ -31,35 +35,25 @@ namespace IdentitySample.Controllers
             IEmailSender emailSender,
             ISmsSender smsSender,
             ILoggerFactory loggerFactory,
-            IActionContextAccessor accessor,
-            IUrlHelper url)
+            IUrlHelper url,
+            IDataProtector protector)
         {
             _userManager = userManager;
             _signInManager = signInManager;
             _emailSender = emailSender;
             _smsSender = smsSender;
-            this._accessor = accessor;
             _logger = loggerFactory.CreateLogger<AccountController>();
+
             this._url = url;
+            this._protector = protector;
         }
-
-        //
-        // GET: /Account/Login
-        [HttpGet]
-        [AllowAnonymous]
-        public IActionResult Login(string returnUrl = null)
-        {
-            ViewData["ReturnUrl"] = returnUrl;
-            return new OkResult();
-        }
-
+        
         //
         // POST: /Account/Login
         [HttpPost]
         [AllowAnonymous]
         public async Task<IActionResult> Login(Login model, string returnUrl = null)
         {
-            ViewData["ReturnUrl"] = returnUrl;
             if (_accessor.ActionContext.ModelState.IsValid)
             {
                 // This doesn't count login failures towards account lockout
@@ -89,24 +83,13 @@ namespace IdentitySample.Controllers
             // If we got this far, something failed, redisplay form
             return new OkObjectResult(model);
         }
-
-        //
-        // GET: /Account/Register
-        [HttpGet]
-        [AllowAnonymous]
-        public IActionResult Register(string returnUrl = null)
-        {
-            ViewData["ReturnUrl"] = returnUrl;
-            return new OkResult();
-        }
-
+        
         //
         // POST: /Account/Register
         [HttpPost]
         [AllowAnonymous]
         public async Task<IActionResult> Register(Register model, string returnUrl = null)
         {
-            ViewData["ReturnUrl"] = returnUrl;
             if (_accessor.ActionContext.ModelState.IsValid)
             {
                 var user = new User { UserName = model.Email, Email = model.Email };
@@ -137,7 +120,7 @@ namespace IdentitySample.Controllers
         {
             await _signInManager.SignOutAsync();
             _logger.LogInformation(4, "User logged out.");
-            return new RedirectToActionResult(nameof(HomeController.Index), "Home");
+            return new RedirectToHome();
         }
 
         //
@@ -166,7 +149,7 @@ namespace IdentitySample.Controllers
             var info = await _signInManager.GetExternalLoginInfoAsync();
             if (info == null)
             {
-                return new RedirectToActionResult(nameof(Login));
+                return new RedirectToHome();
             }
 
             // Sign in the user with this external login provider if the user already has a login.
@@ -181,7 +164,7 @@ namespace IdentitySample.Controllers
             }
             if (result.RequiresTwoFactor)
             {
-                return new RedirectToActionResult(nameof(SendCode), new { ReturnUrl = returnUrl });
+                return new RedirectToActionResult(nameof(SendCode), nameof(User), new { ReturnUrl = returnUrl });
             }
             if (result.IsLockedOut)
             {
@@ -189,11 +172,8 @@ namespace IdentitySample.Controllers
             }
             else
             {
-                // If the user does not have an account, then ask the user to create an account.
-                ViewData["ReturnUrl"] = returnUrl;
-                ViewData["LoginProvider"] = info.LoginProvider;
                 var email = info.Principal.FindFirstValue(ClaimTypes.Email);
-                return new OkObjectResult("ExternalLoginConfirmation", new ExternalLoginConfirmation { Email = email });
+                return new OkObjectResult(new ExternalLoginConfirmation { Email = email,ReturnUrl = returnUrl,LoginProvider = info.LoginProvider });
             }
         }
 
@@ -229,8 +209,7 @@ namespace IdentitySample.Controllers
                 }
                 AddErrors(result);
             }
-
-            ViewData["ReturnUrl"] = returnUrl;
+            
             return new OkObjectResult(model);
         }
 
@@ -265,7 +244,7 @@ namespace IdentitySample.Controllers
         // POST: /Account/ForgotPassword
         [HttpPost]
         [AllowAnonymous]
-        
+
         public async Task<IActionResult> ForgotPassword(ForgotPassword model)
         {
             if (_accessor.ActionContext.ModelState.IsValid)
@@ -299,20 +278,12 @@ namespace IdentitySample.Controllers
             return new OkResult();
         }
 
-        //
-        // GET: /Account/ResetPassword
-        [HttpGet]
-        [AllowAnonymous]
-        public IActionResult ResetPassword(string code = null)
-        {
-            return code == null ? new OkObjectResult("Error") : new OkResult();
-        }
-
+        
         //
         // POST: /Account/ResetPassword
         [HttpPost]
         [AllowAnonymous]
-        
+
         public async Task<IActionResult> ResetPassword(ResetPassword model)
         {
             if (!_accessor.ActionContext.ModelState.IsValid)
@@ -323,12 +294,12 @@ namespace IdentitySample.Controllers
             if (user == null)
             {
                 // Don't reveal that the user does not exist
-                return new RedirectToActionResult(nameof(AccountController.ResetPasswordConfirmation), "Account");
+                return new BadRequestObjectResult(nameof(user));
             }
             var result = await _userManager.ResetPasswordAsync(user, model.Code, model.Password);
             if (result.Succeeded)
             {
-                return new RedirectToActionResult(nameof(AccountController.ResetPasswordConfirmation), "Account");
+                return new AcceptedResult(nameof(AccountController.ResetPasswordConfirmation), "Account");
             }
             AddErrors(result);
             return new OkResult();
@@ -363,7 +334,7 @@ namespace IdentitySample.Controllers
         // POST: /Account/SendCode
         [HttpPost]
         [AllowAnonymous]
-        
+
         public async Task<IActionResult> SendCode(SendCode model)
         {
             if (!_accessor.ActionContext.ModelState.IsValid)
@@ -379,7 +350,7 @@ namespace IdentitySample.Controllers
 
             if (model.SelectedProvider == "Authenticator")
             {
-                return new RedirectToActionResult(nameof(VerifyAuthenticatorCode), new { ReturnUrl = model.ReturnUrl, RememberMe = model.RememberMe });
+                return new BadRequestObjectResult(new { ReturnUrl = model.ReturnUrl, RememberMe = model.RememberMe });
             }
 
             // Generate the token and send it
@@ -399,7 +370,7 @@ namespace IdentitySample.Controllers
                 await _smsSender.SendSmsAsync(await _userManager.GetPhoneNumberAsync(user), message);
             }
 
-            return new RedirectToActionResult(nameof(VerifyCode), new { Provider = model.SelectedProvider, ReturnUrl = model.ReturnUrl, RememberMe = model.RememberMe });
+            return new BadRequestObjectResult(new { Provider = model.SelectedProvider, ReturnUrl = model.ReturnUrl, RememberMe = model.RememberMe });
         }
 
         //
@@ -421,7 +392,7 @@ namespace IdentitySample.Controllers
         // POST: /Account/VerifyCode
         [HttpPost]
         [AllowAnonymous]
-        
+
         public async Task<IActionResult> VerifyCode(VerifyCode model)
         {
             if (!_accessor.ActionContext.ModelState.IsValid)
@@ -468,7 +439,7 @@ namespace IdentitySample.Controllers
         // POST: /Account/VerifyAuthenticatorCode
         [HttpPost]
         [AllowAnonymous]
-        
+
         public async Task<IActionResult> VerifyAuthenticatorCode(VerifyAuthenticatorCode model)
         {
             if (!_accessor.ActionContext.ModelState.IsValid)
@@ -515,7 +486,7 @@ namespace IdentitySample.Controllers
         // POST: /Account/UseRecoveryCode
         [HttpPost]
         [AllowAnonymous]
-        
+
         public async Task<IActionResult> UseRecoveryCode(UseRecoveryCode model)
         {
             if (!_accessor.ActionContext.ModelState.IsValid)
@@ -553,9 +524,9 @@ namespace IdentitySample.Controllers
 
         private IActionResult RedirectToLocal(string returnUrl)
         {
-            if (Url.IsLocalUrl(returnUrl))
+            if (_url.IsLocalUrl(returnUrl))
             {
-                return Redirect(returnUrl);
+                return new RedirectToRouteResult(returnUrl);
             }
             else
             {

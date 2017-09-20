@@ -5,6 +5,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Models\ClaimProvider.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="2.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.0.0" />
@@ -13,5 +17,9 @@
   <ItemGroup>
     <ProjectReference Include="..\..\CoWorker.Abstractions\CoWorker.Abstractions.csproj" />
     <ProjectReference Include="..\..\CoWorker.DependencyInjection\CoWorker.DependencyInjection.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Manages\" />
   </ItemGroup>
 </Project>

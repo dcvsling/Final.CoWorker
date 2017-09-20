@@ -24,7 +24,7 @@ namespace CoWorker.Models.Identity
                         .AddClaimsPrincipalFactory<User>()
                         .Services
                     .AddSingleton<IConfigureOptions<IdentityOptions>,IdentityOptionsConfigureOptions>()
-                    .AddScoped<UserController>()
+                    .AddScoped<AccountController>()
                     .AddScoped<ManageController>()
                     .AddSingleton(p => new DbContextPool<IdentityDbContext>(p.GetService<DbContextOptions<IdentityDbContext>>()))
                     .AddDbContextPool<IdentityDbContext>(

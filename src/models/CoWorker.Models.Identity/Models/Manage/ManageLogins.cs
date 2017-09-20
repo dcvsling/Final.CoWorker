@@ -9,5 +9,7 @@ namespace CoWorker.Models.Identity.Manages
         public IList<UserLoginInfo> CurrentLogins { get; set; }
 
         public IList<AuthenticationScheme> OtherLogins { get; set; }
+        public string MessageType { get; set; }
+        public string Message { get; set; }
     }
 }
