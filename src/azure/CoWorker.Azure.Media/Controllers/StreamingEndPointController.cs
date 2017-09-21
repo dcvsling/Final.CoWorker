@@ -37,6 +37,6 @@ namespace CoWorker.Azure.Media.Controllers
         
         [HttpPost]
         public Task<IActionResult> Post(string name = null)
-            => _stream.CreateAsync(new StreamingEndpointCreationOptions(string.Empty,1)));
+            => Created(_stream.CreateAsync(new StreamingEndpointCreationOptions(name ?? Guid.NewGuid().ToString(), 1)));
     }
 }

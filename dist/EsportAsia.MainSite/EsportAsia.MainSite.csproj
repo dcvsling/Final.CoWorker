@@ -4,6 +4,8 @@
     <TargetFramework>netcoreapp2.0</TargetFramework>
     <PreserveCompilationContext>true</PreserveCompilationContext>
     <IsWebHost>true</IsWebHost>
+    <ApplicationInsightsResourceId>/subscriptions/7b4764ae-7035-478a-85bc-bc122005cb13/resourcegroups/extreme-resources/providers/microsoft.insights/components/extreme-esport-website</ApplicationInsightsResourceId>
+    <ApplicationInsightsAnnotationResourceId>/subscriptions/7b4764ae-7035-478a-85bc-bc122005cb13/resourcegroups/extreme-resources/providers/microsoft.insights/components/extreme-esport-website</ApplicationInsightsAnnotationResourceId>
   </PropertyGroup>
 
   <ItemGroup>

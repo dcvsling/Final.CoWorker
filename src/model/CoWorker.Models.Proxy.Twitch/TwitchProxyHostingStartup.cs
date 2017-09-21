@@ -9,7 +9,7 @@ namespace CoWorker.Models.Proxy.Twitch
     {
         public void Configure(IWebHostBuilder builder)
         {
-            builder.ConfigureServices((ctx, srv) => srv.AddProxy(o => { o.RoutePrefix = "tch"; o.HostUrl = "https://api.twitch.tv/kraken" }))
+            builder.ConfigureServices((ctx, srv) => srv.AddProxy(o => { o.RoutePrefix = "tch"; o.HostUrl = "https://api.twitch.tv/kraken"; }))
                 .Configure(app => app.UsePrefixRouteProxy());
         }
     }

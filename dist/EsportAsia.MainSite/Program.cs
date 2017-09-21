@@ -23,6 +23,7 @@ namespace EsportAsia.MainSite
 
         public static IWebHost BuildWebHost(string[] args)
             => WebHost.CreateDefaultBuilder(args)
+                .UseApplicationInsights()
                 .UseSetting(WebHostDefaults.ApplicationKey, PlatformServices.Default.Application.ApplicationName)
                 .Build();
 

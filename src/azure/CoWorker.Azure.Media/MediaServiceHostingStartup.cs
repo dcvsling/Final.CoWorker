@@ -6,7 +6,6 @@ namespace CoWorker.Azure.Media
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.Extensions.DependencyInjection;
     using Microsoft.AspNetCore.Mvc.Infrastructure;
-    using CoWorker.Net;
 
     public class MediaServiceHostingStartup : IHostingStartup
     {
@@ -16,9 +15,7 @@ namespace CoWorker.Azure.Media
             {
                 srv.AddOptions()
                 .AddAzureMediaService()
-                .AddAMSController()
-                .AddNetTools()
-                .AddSingleton<IActionContextAccessor, ActionContextAccessor>();
+                .AddAMSController();
             });
         }
     }
