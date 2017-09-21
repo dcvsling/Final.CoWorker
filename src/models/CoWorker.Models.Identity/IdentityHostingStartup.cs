@@ -1,4 +1,5 @@
-﻿using IdentitySamples.Controllers;
+﻿using System;
+using IdentitySamples.Controllers;
 using IdentitySample.Controllers;
 using Microsoft.Extensions.Options;
 using Microsoft.AspNetCore.Hosting;
@@ -18,7 +19,7 @@ namespace CoWorker.Models.Identity
 
             builder.ConfigureServices(
                 (ctx, srv) => srv
-                    .AddIdentityCore<User>(o => { })
+                    .AddIdentityCore<User>(Helper.Empty<IdentityOptions>())
                         .AddDefaultTokenProviders()
                         .Services
                     .AddSingleton<IConfigureOptions<IdentityOptions>,IdentityOptionsConfigureOptions>()

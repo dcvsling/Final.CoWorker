@@ -6,7 +6,7 @@ namespace  CoWorker.Models.Identity
 	using Microsoft.EntityFrameworkCore;
 	using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
-    public class IdentityDbContext : IdentityDbContext<User, Role, Guid>
+    public class IdentityDbContext : IdentityDbContext<User, Role, Guid,UserClaim,UserRole,UserLogin,RoleClaim,UserToken>
     {
         public IdentityDbContext(DbContextOptions<IdentityDbContext> options) : base(new DbContextOptionsBuilder(options).Options)
         {

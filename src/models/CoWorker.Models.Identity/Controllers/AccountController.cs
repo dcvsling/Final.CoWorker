@@ -1,13 +1,11 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.DataProtection;
-using System;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using CoWorker.Models.Identity;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using CoWorker.Models.Identity.Accounts;
@@ -17,7 +15,6 @@ namespace IdentitySample.Controllers
 {
     [Controller]
     [Authorize]
-    [Route("usr")]
     public class AccountController //DevSkim: ignore DS184626
     {
         private readonly UserManager<User> _userManager;
@@ -36,6 +33,7 @@ namespace IdentitySample.Controllers
             ISmsSender smsSender,
             ILoggerFactory loggerFactory,
             IUrlHelper url,
+            IActionContextAccessor accessor,
             IDataProtector protector)
         {
             _userManager = userManager;

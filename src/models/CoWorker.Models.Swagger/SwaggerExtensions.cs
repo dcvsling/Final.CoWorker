@@ -1,13 +1,6 @@
-﻿using Newtonsoft.Json;
-using System;
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.Swagger;
-using Swashbuckle.AspNetCore.SwaggerGen;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace CoWorker.LightMvc.Swagger
 {
@@ -18,6 +11,7 @@ namespace CoWorker.LightMvc.Swagger
                 .AddSwaggerGen(o =>
                 {
                     o.SwaggerDoc("v1", new Info { Title = "My API V1", Version = "v1" });
+                    o.SwaggerDoc("v2", new Info { Title = "My API V2", Version = "v2" });
                     o.OperationFilter<SecurityRequirementsOperationFilter>();
                     o.DescribeAllParametersInCamelCase();
                 });
@@ -35,7 +29,7 @@ namespace CoWorker.LightMvc.Swagger
                     c.EnabledValidator();
                     c.BooleanValues(new object[] { 0, 1 });
                     c.DocExpansion("full");
-                    c.SupportedSubmitMethods(new[] { "get", "post", "put", "delete" });
+                    c.SupportedSubmitMethods(new[] { "get", "post", "put", "delete", "patch" });
                     c.ShowRequestHeaders();
                     c.ShowJsonEditor();
                 });
