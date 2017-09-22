@@ -16,5 +16,7 @@ namespace CoWorker.Models.Identity.Manages
         public bool BrowserRemembered { get; set; }
 
         public string AuthenticatorKey { get; set; }
+        public string MessageType { get; set; }
+        public string Message { get; set; }
     }
 }

@@ -44,8 +44,7 @@ namespace CoWorker.Builder
                         o.ClaimsIssuer = "https://esoprtasia.tv";
                         o.ExpireTimeSpan = new TimeSpan(1, 0, 0);
                     });
-
-
+        
         public static IServiceCollection AddClaimBaseAuthorization(this IServiceCollection services)
             => services.AddSingleton<IClaimsTransformation, AdditionalClaimTransformation>()
                 .AddClaimsProvider<DefaultClaimProvider>()

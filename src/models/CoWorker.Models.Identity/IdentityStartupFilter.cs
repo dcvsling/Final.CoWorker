@@ -19,9 +19,7 @@ namespace CoWorker.Models.Identity
             builder.ConfigureServices(
                 (ctx, srv) => srv
                     .AddIdentityCore<User>(o => { })
-                        .AddEntityFrameworkStores<IdentityDbContext>()
                         .AddDefaultTokenProviders()
-                        .AddClaimsPrincipalFactory<User>()
                         .Services
                     .AddSingleton<IConfigureOptions<IdentityOptions>,IdentityOptionsConfigureOptions>()
                     .AddScoped<AccountController>()

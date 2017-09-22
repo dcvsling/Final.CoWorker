@@ -15,10 +15,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "global", "global", "{1AF722
 	ProjectSection(SolutionItems) = preProject
 		.gitattributes = .gitattributes
 		.gitignore = .gitignore
-		appsettings.development.json = appsettings.development.json
-		appsettings.json = appsettings.json
-		appsettings.production.json = appsettings.production.json
-		appsettings.staging.json = appsettings.staging.json
 		Directory.Build.props = Directory.Build.props
 		Directory.Build.targets = Directory.Build.targets
 		esportasia.pfx = esportasia.pfx
@@ -63,7 +59,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "data", "data", "{F781AB82-D
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "esport-asia-db", "data\esport-asia-db\esport-asia-db.sqlproj", "{DB87E2C3-4219-4A4A-96A1-B4F56EC68917}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "azure", "azure", "{41D0F548-F0B7-45EC-A528-932AD77C4F08}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoWorker.Models.Identity", "src\models\CoWorker.Models.Identity\CoWorker.Models.Identity.csproj", "{0ACB4131-5B0D-4184-8BC7-0CD200DA9983}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CoWorker.Azure.Media", "src\azure\CoWorker.Azure.Media\CoWorker.Azure.Media.csproj", "{C5B4321C-69A5-4E08-B565-A48AB66D6E86}"
 EndProject
@@ -157,6 +153,14 @@ Global
 		{D097E6D7-069B-4685-BAAB-E352AE2509EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D097E6D7-069B-4685-BAAB-E352AE2509EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D097E6D7-069B-4685-BAAB-E352AE2509EC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0ACB4131-5B0D-4184-8BC7-0CD200DA9983}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0ACB4131-5B0D-4184-8BC7-0CD200DA9983}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0ACB4131-5B0D-4184-8BC7-0CD200DA9983}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0ACB4131-5B0D-4184-8BC7-0CD200DA9983}.Release|Any CPU.Build.0 = Release|Any CPU
+		{31A0EACA-0BED-44D7-8C59-E6034A363ADA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31A0EACA-0BED-44D7-8C59-E6034A363ADA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31A0EACA-0BED-44D7-8C59-E6034A363ADA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31A0EACA-0BED-44D7-8C59-E6034A363ADA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -183,6 +187,8 @@ Global
 		{5BE19808-AEA9-43A2-921B-F3AD7F3308E5} = {73D49FF8-B479-451A-BAC8-6A1E83305108}
 		{20EFADDF-A0EB-44EA-BEE0-4089EC0FBEAD} = {5BE19808-AEA9-43A2-921B-F3AD7F3308E5}
 		{D097E6D7-069B-4685-BAAB-E352AE2509EC} = {7994CB44-87C6-40F1-8FDB-0E68B1DDEB17}
+		{0ACB4131-5B0D-4184-8BC7-0CD200DA9983} = {7994CB44-87C6-40F1-8FDB-0E68B1DDEB17}
+		{31A0EACA-0BED-44D7-8C59-E6034A363ADA} = {7994CB44-87C6-40F1-8FDB-0E68B1DDEB17}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {E96AEEE5-4029-478A-A780-24AF3CFE4492}

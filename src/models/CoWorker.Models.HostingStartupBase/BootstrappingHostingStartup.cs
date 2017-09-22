@@ -33,16 +33,19 @@ namespace CoWorker.Models.HostingStartupBase
                 //    () => builder.GetSetting(WebHostDefaults.EnvironmentKey) == "Development",
                 //    srv => srv.AddKestrelHttps())
                 .UseSetting(WebHostDefaults.DetailedErrorsKey, "true")
-                .UseStartup<Startup>();
-
-            
+                .Configure(Helper.Empty<IApplicationBuilder>());
         }
 
         public void ConfigureAppConfiguration(WebHostBuilderContext context, IConfigurationBuilder builder)
         {
             context.Configuration = builder
                 .AddEnvironmentVariables()
-                .AddInMemoryCollection(context.Configuration.AsEnumerable())
+                .AddInMemoryCollection(context.Configuration.AsEnumerable()).Build();
+            var config = context.Configuration.GetSection("keyvault");
+            context.Configuration = builder.AddAzureKeyVault(
+                        $"https://{config.GetValue<string>("name")}.vault.azure.net/",
+                        config.GetValue<string>("clientid"),
+                        config.GetValue<string>("clientsecret"))
                 .Build();
         }
 
@@ -58,7 +61,8 @@ namespace CoWorker.Models.HostingStartupBase
                     .AddElm()
                     .AddHttpsRedirect()
                     .AddAntiforgeryMiddleware()
-                    .AddSingleton<IStartupFilter, StartupFilterBase>();
+                    .AddSingleton<IStartupFilter, StartupFilterBase>()
+                    .AddSingleton(services);
 
             if (context.HostingEnvironment.IsDevelopment())
                 services.AddKestrelHttps();

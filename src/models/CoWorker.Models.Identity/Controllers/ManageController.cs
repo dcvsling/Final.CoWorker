@@ -15,6 +15,7 @@ namespace IdentitySamples.Controllers
     [Authorize]
     public class ManageController
     {
+        public const string MANAGE = "Manage";
         private readonly UserManager<User> _userManager;
         private readonly SignInManager<User> _signInManager;
         private readonly IEmailSender _emailSender;
@@ -22,13 +23,16 @@ namespace IdentitySamples.Controllers
         private readonly ILogger _logger;
         private readonly IActionContextAccessor _accessor;
         private readonly object Empty = new { };
+        private readonly IUrlHelper _url;
+
         public ManageController(
         UserManager<User> userManager,
         SignInManager<User> signInManager,
         IEmailSender emailSender,
         ISmsSender smsSender,
         ILoggerFactory loggerFactory,
-        IActionContextAccessor accessor)
+        IActionContextAccessor accessor,
+        IUrlHelper url)
         {
             _userManager = userManager;
             _signInManager = signInManager;
@@ -36,6 +40,7 @@ namespace IdentitySamples.Controllers
             _smsSender = smsSender;
             _logger = loggerFactory.CreateLogger<ManageController>();
             this._accessor = accessor;
+            this._url = url;
         }
 
         //
@@ -43,7 +48,7 @@ namespace IdentitySamples.Controllers
         [HttpGet]
         public async Task<IActionResult> Index(ManageMessageId? message = null)
         {
-            ViewData["StatusMessage"] =
+            var msg =
                 message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
                 : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
                 : message == ManageMessageId.SetTwoFactorSuccess ? "Your two-factor authentication provider has been set."
@@ -60,7 +65,9 @@ namespace IdentitySamples.Controllers
                 TwoFactor = await _userManager.GetTwoFactorEnabledAsync(user),
                 Logins = await _userManager.GetLoginsAsync(user),
                 BrowserRemembered = await _signInManager.IsTwoFactorClientRememberedAsync(user),
-                AuthenticatorKey = await _userManager.GetAuthenticatorKeyAsync(user)
+                AuthenticatorKey = await _userManager.GetAuthenticatorKeyAsync(user),
+                MessageType = message?.ToString(),
+                Message = msg
             };
             return new OkObjectResult(model);
         }
@@ -82,7 +89,7 @@ namespace IdentitySamples.Controllers
                     message = ManageMessageId.RemoveLoginSuccess;
                 }
             }
-            return new new RedirectToActionResultResult(nameof(ManageLogins),nameof(ManageController), new { Message = message });
+            return new RedirectToActionResult(nameof(ManageLogins), MANAGE, new { Message = message });
         }
 
         //
@@ -106,7 +113,7 @@ namespace IdentitySamples.Controllers
             var user = await GetCurrentUserAsync();
             var code = await _userManager.GenerateChangePhoneNumberTokenAsync(user, model.PhoneNumber);
             await _smsSender.SendSmsAsync(model.PhoneNumber, "Your security code is: " + code);
-            return new RedirectToActionResult(nameof(VerifyPhoneNumber),nameof(ManageController), new { PhoneNumber = model.PhoneNumber });
+            return new RedirectToActionResult(nameof(VerifyPhoneNumber), MANAGE, new { PhoneNumber = model.PhoneNumber });
         }
 
         //
@@ -121,7 +128,7 @@ namespace IdentitySamples.Controllers
                 await _userManager.ResetAuthenticatorKeyAsync(user);
                 _logger.LogInformation(1, "User reset authenticator key.");
             }
-            return new RedirectToActionResult(nameof(Index), "Manage", Empty);
+            return new RedirectToActionResult(nameof(Index), MANAGE, Empty);
         }
 
         //
@@ -153,7 +160,7 @@ namespace IdentitySamples.Controllers
                 await _signInManager.SignInAsync(user, isPersistent: false);
                 _logger.LogInformation(1, "User enabled two-factor authentication.");
             }
-            return new RedirectToActionResult(nameof(Index), "Manage", Empty);
+            return new RedirectToActionResult(nameof(Index), MANAGE, Empty);
         }
 
         //
@@ -169,7 +176,7 @@ namespace IdentitySamples.Controllers
                 await _signInManager.SignInAsync(user, isPersistent: false);
                 _logger.LogInformation(2, "User disabled two-factor authentication.");
             }
-            return new RedirectToActionResult(nameof(Index), "Manage",Empty);
+            return new RedirectToActionResult(nameof(Index), MANAGE,Empty);
         }
 
         //
@@ -199,12 +206,12 @@ namespace IdentitySamples.Controllers
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, isPersistent: false);
-                    return new RedirectToActionResult(nameof(Index), new { Message = ManageMessageId.AddPhoneSuccess });
+                    return new RedirectToActionResult(nameof(Index),MANAGE, new { Message = ManageMessageId.AddPhoneSuccess });
                 }
             }
             // If we got this far, something failed, redisplay the form
             _accessor.ActionContext.ModelState.AddModelError(string.Empty, "Failed to verify phone number");
-            return new OkObjectResult(model);
+            return new BadRequestObjectResult(model);
         }
 
         //
@@ -220,10 +227,10 @@ namespace IdentitySamples.Controllers
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, isPersistent: false);
-                    return new RedirectToActionResult(nameof(Index), new { Message = ManageMessageId.RemovePhoneSuccess });
+                    return new RedirectToActionResult(nameof(Index),MANAGE, new { Message = ManageMessageId.RemovePhoneSuccess });
                 }
             }
-            return new RedirectToActionResult(nameof(Index), new { Message = ManageMessageId.Error });
+            return new BadRequestObjectResult(new { Message = ManageMessageId.Error });
         }
 
         //
@@ -242,7 +249,7 @@ namespace IdentitySamples.Controllers
         {
             if (!_accessor.ActionContext.ModelState.IsValid)
             {
-                return new OkObjectResult(model);
+                return new BadRequestObjectResult(model);
             }
             var user = await GetCurrentUserAsync();
             if (user != null)
@@ -252,22 +259,13 @@ namespace IdentitySamples.Controllers
                 {
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     _logger.LogInformation(3, "User changed their password successfully.");
-                    return new RedirectToActionResult(nameof(Index), new { Message = ManageMessageId.ChangePasswordSuccess });
+                    return new RedirectToActionResult(nameof(Index),MANAGE, new { Message = ManageMessageId.ChangePasswordSuccess });
                 }
                 AddErrors(result);
-                return new OkObjectResult(model);
+                return new BadRequestObjectResult(model);
             }
-            return new RedirectToActionResult(nameof(Index), new { Message = ManageMessageId.Error });
+            return new BadRequestObjectResult(new { Message = ManageMessageId.Error });
         }
-
-        //
-        // GET: /Manage/SetPassword
-        [HttpGet]
-        public IActionResult SetPassword()
-        {
-            return new OkResult();
-        }
-
         //
         // POST: /Manage/SetPassword
         [HttpPost]
@@ -276,7 +274,7 @@ namespace IdentitySamples.Controllers
         {
             if (!_accessor.ActionContext.ModelState.IsValid)
             {
-                return new OkObjectResult(model);
+                return new BadRequestObjectResult(model);
             }
 
             var user = await GetCurrentUserAsync();
@@ -286,19 +284,19 @@ namespace IdentitySamples.Controllers
                 if (result.Succeeded)
                 {
                     await _signInManager.SignInAsync(user, isPersistent: false);
-                    return new RedirectToActionResult(nameof(Index), new { Message = ManageMessageId.SetPasswordSuccess });
+                    return new OkObjectResult(new { Message = ManageMessageId.SetPasswordSuccess });
                 }
                 AddErrors(result);
-                return new OkObjectResult(model);
+                return new BadRequestObjectResult(model);
             }
-            return new RedirectToActionResult(nameof(Index), new { Message = ManageMessageId.Error });
+            return new BadRequestObjectResult(new { Message = ManageMessageId.Error });
         }
 
         //GET: /Manage/ManageLogins
         [HttpGet]
         public async Task<IActionResult> ManageLogins(ManageMessageId? message = null)
         {
-            ViewData["StatusMessage"] =
+            var msg =
                 message == ManageMessageId.RemoveLoginSuccess ? "The external login was removed."
                 : message == ManageMessageId.AddLoginSuccess ? "The external login was added."
                 : message == ManageMessageId.Error ? "An error has occurred."
@@ -311,11 +309,12 @@ namespace IdentitySamples.Controllers
             var userLogins = await _userManager.GetLoginsAsync(user);
             var schemes = await _signInManager.GetExternalAuthenticationSchemesAsync();
             var otherLogins = schemes.Where(auth => userLogins.All(ul => auth.Name != ul.LoginProvider)).ToList();
-            ViewData["ShowRemoveButton"] = user.PasswordHash != null || userLogins.Count > 1;
             return new OkObjectResult(new ManageLogins
             {
                 CurrentLogins = userLogins,
-                OtherLogins = otherLogins
+                OtherLogins = otherLogins,
+                MessageType = message?.ToString(),
+                Message = msg
             });
         }
 
@@ -326,9 +325,12 @@ namespace IdentitySamples.Controllers
         public IActionResult LinkLogin(string provider)
         {
             // Request a redirect to the external login provider to link a login for the current user
-            var redirectUrl = Url.Action("LinkLoginCallback", "Manage");
-            var properties = _signInManager.ConfigureExternalAuthenticationProperties(provider, redirectUrl, _userManager.GetUserId(User));
-            return Challenge(properties, provider);
+            var redirectUrl = _url.Action("LinkLoginCallback", "Manage");
+            var properties = _signInManager.ConfigureExternalAuthenticationProperties(
+                provider, 
+                redirectUrl, 
+                _userManager.GetUserId(_accessor.ActionContext.HttpContext.User));
+            return new ChallengeResult(provider,properties);
         }
 
         //
@@ -339,16 +341,16 @@ namespace IdentitySamples.Controllers
             var user = await GetCurrentUserAsync();
             if (user == null)
             {
-                return new OkObjectResult("Error");
+                return new BadRequestResult();
             }
             var info = await _signInManager.GetExternalLoginInfoAsync(await _userManager.GetUserIdAsync(user));
             if (info == null)
             {
-                return new RedirectToActionResult(nameof(ManageLogins), new { Message = ManageMessageId.Error });
+                return new BadRequestObjectResult(new { Message = ManageMessageId.Error });
             }
             var result = await _userManager.AddLoginAsync(user, info);
             var message = result.Succeeded ? ManageMessageId.AddLoginSuccess : ManageMessageId.Error;
-            return new RedirectToActionResult(nameof(ManageLogins), new { Message = message });
+            return new OkObjectResult(new { Message = message });
         }
 
         #region Helpers
@@ -375,7 +377,7 @@ namespace IdentitySamples.Controllers
 
         private Task<User> GetCurrentUserAsync()
         {
-            return _userManager.GetUserAsync(HttpContext.User);
+            return _userManager.GetUserAsync(_accessor.ActionContext.HttpContext.User);
         }
 
         #endregion

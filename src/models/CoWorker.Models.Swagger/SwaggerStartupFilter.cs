@@ -1,4 +1,5 @@
-﻿using Swashbuckle.AspNetCore.SwaggerUI;
+﻿using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Swashbuckle.AspNetCore.SwaggerUI;
 using System.Threading.Tasks;
 using System.Linq;
 using System.Security.Claims;
@@ -37,6 +38,12 @@ namespace CoWorker.Models.Swagger
             IHostingEnvironment env,
             Action<IApplicationBuilder> next)
         {
+            app.Use(req => async ctx => {
+                var items = ctx.RequestServices.GetService<IActionDescriptorCollectionProvider>()
+                    .ActionDescriptors
+                    .Items;
+               await req(ctx);
+            });
             next(app);
          
             app.UseFileServer(app.ApplicationServices.GetService<IOptions<FileServerOptions>>().Value)

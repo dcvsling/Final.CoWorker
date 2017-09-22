@@ -34,9 +34,9 @@
   <Target Name="CopyAppSettings" AfterTargets="AfterBuild" Condition="$(CopyGlobalFile) == 'true'">
     <Copy SourceFiles="$(SolutionDir)esportasia.pfx" DestinationFolder="$(OutputPath)" Condition="$(IsWebHost) == 'true'" ContinueOnError="true" SkipUnchangedFiles="false"/>
     <Copy SourceFiles="$(SolutionDir)xunit.runner.json" DestinationFolder="$(OutputPath)" Condition="$(IsTest) == 'true'" ContinueOnError="true" SkipUnchangedFiles="false"/>
-    <Copy SourceFiles="$(SolutionDir)appsettings.json" DestinationFolder="$(OutputPath)"  ContinueOnError="true" SkipUnchangedFiles="false" />
-    <Copy SourceFiles="$(SolutionDir)appsettings.Production.json" DestinationFolder="$(OutputPath)"  ContinueOnError="true" SkipUnchangedFiles="false"/>
-    <Copy SourceFiles="$(SolutionDir)appsettings.Staging.json" DestinationFolder="$(OutputPath)" ContinueOnError="true"  SkipUnchangedFiles="false"/>
-    <Copy SourceFiles="$(SolutionDir)appsettings.Development.json" DestinationFolder="$(OutputPath)"  ContinueOnError="true" SkipUnchangedFiles="false"/>
+    <Copy SourceFiles="$(SolutionDir)dist\EsportAsia.MainSite\appsettings.json" DestinationFolder="$(OutputPath)"  ContinueOnError="true" SkipUnchangedFiles="false" />
+    <Copy SourceFiles="$(SolutionDir)dist\EsportAsia.MainSite\appsettings.Production.json" DestinationFolder="$(OutputPath)"  ContinueOnError="true" SkipUnchangedFiles="false"/>
+    <Copy SourceFiles="$(SolutionDir)dist\EsportAsia.MainSite\appsettings.Staging.json" DestinationFolder="$(OutputPath)" ContinueOnError="true"  SkipUnchangedFiles="false"/>
+    <Copy SourceFiles="$(SolutionDir)dist\EsportAsia.MainSite\appsettings.Development.json" DestinationFolder="$(OutputPath)"  ContinueOnError="true" SkipUnchangedFiles="false"/>
   </Target>
 </Project>

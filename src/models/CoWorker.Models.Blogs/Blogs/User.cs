@@ -7,5 +7,6 @@ namespace CoWorker.Models.Blog
     {
         public Guid Id { get; set; }
         public string Email { get; set; }
+        public string Sign { get; set; }
     }
 }
