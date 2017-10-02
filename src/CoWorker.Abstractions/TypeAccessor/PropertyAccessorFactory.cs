@@ -27,5 +27,6 @@ namespace CoWorker.Abstractions.TypeAccessor
                     exps => exps.First().AsTypeTo(_property.DeclaringType)
                         .GetPropertyOrField(_property.Name)
                         .AssignFrom(exps.Last())).Compile();
+#error exps.last 可能有問題 請重新調整
     }
 }

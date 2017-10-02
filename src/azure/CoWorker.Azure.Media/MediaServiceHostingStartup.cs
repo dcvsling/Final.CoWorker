@@ -14,8 +14,8 @@ namespace CoWorker.Azure.Media
             builder.ConfigureServices((ctx, srv) =>
             {
                 srv.AddOptions()
-                .AddAzureMediaService()
-                .AddAMSController();
+                    .AddAzureMediaService()
+                    .AddAMSController();
             });
         }
     }

@@ -1,14 +1,7 @@
 ﻿using CoWorker.Azure.Media.Factory;
-using System.Linq.Expressions;
-using System.Security.Cryptography.X509Certificates;
-using System.ComponentModel.Design;
-using System.Linq;
 using Microsoft.WindowsAzure.MediaServices.Client;
-using System;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-using System.Reflection;
-using CoWorker.Azure.Media.Controllers;
 using CoWorker.Azure.Media.Repository;
 using CoWorker.Azure.Media.Internal;
 
